@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "e00ae9a8-fb0c-4f8e-a592-9fd2ba0f2e89",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "Equipamento_Detalhe__c",
+  "id" : "8878d18a-bd79-4c3b-81d5-623c2ee1959b",
+  "label" : "Equipamento Detalhe",
+  "objectApiName" : "Equipamento__c",
+  "routeType" : "detail-a0U",
+  "type" : "route",
+  "urlPrefix" : "equipamento"
+}

@@ -1,0 +1,458 @@
+﻿<template>
+    <div class="list-card">
+        <template if:false={compact}>
+            <div class="list-card__toolbar">
+                <div class="list-card__toolbar-left">
+                    <div class="list-card__view-select-wrap">
+                        <button class="list-card__view-select" onclick={togglePicker} aria-haspopup="true" aria-expanded={isPickerOpen}>
+                            <span class="slds-truncate">{selectedViewLabel}</span>
+                            <lightning-icon icon-name="utility:down" size="xx-small"></lightning-icon>
+                        </button>
+
+                        <template if:true={isPickerOpen}>
+                            <div class="list-card__dropdown-overlay" onclick={handleOverlayClick}></div>
+                            <div class="slds-dropdown slds-dropdown_left list-card__dropdown" role="menu">
+                                <p class="slds-dropdown__header slds-text-title_caps">Modos de exibição de lista</p>
+                                <ul class="slds-dropdown__list" role="presentation">
+                                    <template for:each={views} for:item="v">
+                                        <li key={v.value} role="presentation" class="slds-dropdown__item">
+                                            <a href="javascript:void(0);" role="menuitem" data-value={v.value} onclick={handleViewSelect}>
+                                                <span class="slds-truncate">{v.label}</span>
+                                            </a>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="list-card__toolbar-right">
+                    <span class="list-card__total slds-text-body_small">Total {totalCount}</span>
+                    <div class="list-card__search">
+                        <lightning-icon icon-name="utility:search" size="x-small"></lightning-icon>
+                        <input
+                            type="text"
+                            class="list-card__search-input"
+                            placeholder="Pesquisar nesta lista..."
+                            value={searchTerm}
+                            oninput={handleSearchInput}
+                        />
+                    </div>
+                    <button class="list-card__refresh" title="Atualizar" onclick={handleRefresh}>
+                        <lightning-icon icon-name="utility:refresh" size="x-small"></lightning-icon>
+                    </button>
+                    <div class="list-card__filter-wrap">
+                        <button class={filterButtonClass} title="Filtrar" onclick={toggleFilterPanel} aria-haspopup="true" aria-expanded={isFilterPanelOpen}>
+                            <lightning-icon icon-name="utility:filterList" size="x-small"></lightning-icon>
+                        </button>
+
+                        <template if:true={isFilterPanelOpen}>
+                            <div class="list-card__dropdown-overlay" onclick={handleFilterOverlayClick}></div>
+                            <div class="list-card__filter-panel" role="dialog" aria-label="Filtros">
+                                <div class="list-card__filter-panel-header">
+                                    <h2 class="list-card__filter-panel-title">Filtros</h2>
+                                    <button class="list-card__filter-panel-close" title="Fechar" onclick={handleFilterPanelClose}>
+                                        <lightning-icon icon-name="utility:close" size="xx-small"></lightning-icon>
+                                    </button>
+                                </div>
+                                <div class="list-card__filter-locked-label">
+                                    <lightning-icon icon-name="utility:lock" size="xx-small"></lightning-icon>
+                                    <span>Filtros bloqueados</span>
+                                </div>
+                                <div class="list-card__filter-chip">
+                                    <span class="list-card__filter-chip-label">Filtrado por</span>
+                                    <span class="list-card__filter-chip-value">{selectedViewLabel}</span>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={compact}>
+            <p class="list-card__compact-title slds-text-title_caps slds-text-heading_small">{selectedViewLabel}</p>
+        </template>
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Carregando chamados" size="small"></lightning-spinner>
+        </template>
+
+        <template if:true={errorMessage}>
+            <div class="slds-text-color_error slds-var-p-around_small" role="alert">
+                {errorMessage}
+            </div>
+        </template>
+
+        <template if:true={showWaitingForAccount}>
+            <div class="slds-text-color_weak slds-var-p-around_small">
+                Selecione uma empresa para ver os chamados.
+            </div>
+        </template>
+
+        <template if:true={showEmptyState}>
+            <div class="slds-text-color_weak slds-var-p-around_small">
+                Nenhum chamado encontrado para esta empresa.
+            </div>
+        </template>
+
+        <template if:true={hasCasos}>
+            <!-- Modo tab: tabela própria, controle total do espaçamento
+                 (o lightning-datatable não deixa ajustar a altura do
+                 cabeçalho de fora). -->
+            <template if:false={compact}>
+                <div class="list-card__table-wrap">
+                    <table class="list-card__table">
+                        <colgroup>
+                            <col class="list-card__col-rownum">
+                            <col style={numeroColStyle}>
+                            <template if:true={showAssunto}>
+                                <col style={assuntoColStyle}>
+                            </template>
+                            <col style={contatoColStyle}>
+                            <template if:true={showUsuarioEarly}>
+                                <col style={usuarioColStyle}>
+                            </template>
+                            <template if:true={showEndereco}>
+                                <col style={enderecoColStyle}>
+                            </template>
+                            <template if:true={showStatus}>
+                                <col style={statusColStyle}>
+                            </template>
+                            <template if:true={showDataProgramada}>
+                                <col style={dataProgramadaColStyle}>
+                            </template>
+                            <template if:true={showUsuarioLate}>
+                                <col style={usuarioColStyle}>
+                            </template>
+                            <template if:true={showDataFechamento}>
+                                <col style={dataFechamentoColStyle}>
+                            </template>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="list-card__th-rownum"></th>
+                                <th class={numeroThClass} data-field="numero" onclick={handleSort}>
+                                    <span class="list-card__th-inner">
+                                        <span class="list-card__th-label">Número</span>
+                                        <lightning-icon if:true={isSortedByNumero} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                        <lightning-icon if:false={isSortedByNumero} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="numero" onclick={handleColumnMenuToggle}></lightning-icon>
+                                    </span>
+                                    <span class="list-card__resize-handle" data-field="numero" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                                <template if:true={isColumnMenuOpenNumero}>
+                                    <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                    <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                        <ul class="slds-dropdown__list" role="presentation">
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="numero" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Quebrar texto</span>
+                                                </a>
+                                            </li>
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="numero" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Cortar texto</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </template>
+                                </th>
+                                <template if:true={showAssunto}>
+                                <th class={assuntoThClass} data-field="assunto" onclick={handleSort}>
+                                    <span class="list-card__th-inner">
+                                        <span class="list-card__th-label">Assunto</span>
+                                        <lightning-icon if:true={isSortedByAssunto} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                        <lightning-icon if:false={isSortedByAssunto} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="assunto" onclick={handleColumnMenuToggle}></lightning-icon>
+                                    </span>
+                                <span class="list-card__resize-handle" data-field="assunto" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                                <template if:true={isColumnMenuOpenAssunto}>
+                                    <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                    <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                        <ul class="slds-dropdown__list" role="presentation">
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="assunto" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Quebrar texto</span>
+                                                </a>
+                                            </li>
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="assunto" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Cortar texto</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </template>
+                                </th>
+                                </template>
+                                <th class={contatoThClass} data-field="contato" onclick={handleSort}>
+                                    <span class="list-card__th-inner">
+                                        <span class="list-card__th-label">Nome do contato</span>
+                                        <lightning-icon if:true={isSortedByContato} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                        <lightning-icon if:false={isSortedByContato} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="contato" onclick={handleColumnMenuToggle}></lightning-icon>
+                                    </span>
+                                <span class="list-card__resize-handle" data-field="contato" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                                <template if:true={isColumnMenuOpenContato}>
+                                    <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                    <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                        <ul class="slds-dropdown__list" role="presentation">
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="contato" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Quebrar texto</span>
+                                                </a>
+                                            </li>
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="contato" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Cortar texto</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </template>
+                                </th>
+                                <template if:true={showUsuarioEarly}>
+                                <th class={usuarioThClass} data-field="usuario" onclick={handleSort}>
+                                    <span class="list-card__th-inner">
+                                        <span class="list-card__th-label">Usuário</span>
+                                        <lightning-icon if:true={isSortedByUsuario} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                        <lightning-icon if:false={isSortedByUsuario} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="usuario" onclick={handleColumnMenuToggle}></lightning-icon>
+                                    </span>
+                                <span class="list-card__resize-handle" data-field="usuario" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                                <template if:true={isColumnMenuOpenUsuario}>
+                                    <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                    <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                        <ul class="slds-dropdown__list" role="presentation">
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="usuario" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Quebrar texto</span>
+                                                </a>
+                                            </li>
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="usuario" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Cortar texto</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </template>
+                                </th>
+                                </template>
+                                <template if:true={showEndereco}>
+                                <th class={enderecoThClass} data-field="endereco" onclick={handleSort}>
+                                    <span class="list-card__th-inner">
+                                        <span class="list-card__th-label">Endereço</span>
+                                        <lightning-icon if:true={isSortedByEndereco} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                        <lightning-icon if:false={isSortedByEndereco} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="endereco" onclick={handleColumnMenuToggle}></lightning-icon>
+                                    </span>
+                                <span class="list-card__resize-handle" data-field="endereco" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                                <template if:true={isColumnMenuOpenEndereco}>
+                                    <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                    <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                        <ul class="slds-dropdown__list" role="presentation">
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="endereco" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Quebrar texto</span>
+                                                </a>
+                                            </li>
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="endereco" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Cortar texto</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </template>
+                                </th>
+                                </template>
+                                <template if:true={showStatus}>
+                                <th class={statusThClass} data-field="status" onclick={handleSort}>
+                                    <span class="list-card__th-inner">
+                                        <span class="list-card__th-label">Status</span>
+                                        <lightning-icon if:true={isSortedByStatus} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                        <lightning-icon if:false={isSortedByStatus} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="status" onclick={handleColumnMenuToggle}></lightning-icon>
+                                    </span>
+                                <span class="list-card__resize-handle" data-field="status" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                                <template if:true={isColumnMenuOpenStatus}>
+                                    <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                    <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                        <ul class="slds-dropdown__list" role="presentation">
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="status" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Quebrar texto</span>
+                                                </a>
+                                            </li>
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="status" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Cortar texto</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </template>
+                                </th>
+                                </template>
+                                <template if:true={showDataProgramada}>
+                                <th class={dataProgramadaThClass} data-field="dataProgramada" onclick={handleSort}>
+                                    <span class="list-card__th-inner">
+                                        <span class="list-card__th-label">Data Programada</span>
+                                        <lightning-icon if:true={isSortedByDataProgramada} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                        <lightning-icon if:false={isSortedByDataProgramada} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="dataProgramada" onclick={handleColumnMenuToggle}></lightning-icon>
+                                    </span>
+                                <span class="list-card__resize-handle" data-field="dataProgramada" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                                <template if:true={isColumnMenuOpenDataProgramada}>
+                                    <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                    <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                        <ul class="slds-dropdown__list" role="presentation">
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="dataProgramada" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Quebrar texto</span>
+                                                </a>
+                                            </li>
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="dataProgramada" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Cortar texto</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </template>
+                                </th>
+                                </template>
+                                <template if:true={showUsuarioLate}>
+                                <th class={usuarioThClass} data-field="usuario" onclick={handleSort}>
+                                    <span class="list-card__th-inner">
+                                        <span class="list-card__th-label">Usuário</span>
+                                        <lightning-icon if:true={isSortedByUsuario} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                        <lightning-icon if:false={isSortedByUsuario} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="usuario" onclick={handleColumnMenuToggle}></lightning-icon>
+                                    </span>
+                                <span class="list-card__resize-handle" data-field="usuario" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                                <template if:true={isColumnMenuOpenUsuario}>
+                                    <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                    <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                        <ul class="slds-dropdown__list" role="presentation">
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="usuario" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Quebrar texto</span>
+                                                </a>
+                                            </li>
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="usuario" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Cortar texto</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </template>
+                                </th>
+                                </template>
+                                <template if:true={showDataFechamento}>
+                                <th class={dataFechamentoThClass} data-field="dataFechamento" onclick={handleSort}>
+                                    <span class="list-card__th-inner">
+                                        <span class="list-card__th-label">Data/Hora de fechamento</span>
+                                        <lightning-icon if:true={isSortedByDataFechamento} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                        <lightning-icon if:false={isSortedByDataFechamento} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="dataFechamento" onclick={handleColumnMenuToggle}></lightning-icon>
+                                    </span>
+                                <span class="list-card__resize-handle" data-field="dataFechamento" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                                <template if:true={isColumnMenuOpenDataFechamento}>
+                                    <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                    <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                        <ul class="slds-dropdown__list" role="presentation">
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="dataFechamento" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Quebrar texto</span>
+                                                </a>
+                                            </li>
+                                            <li class="slds-dropdown__item" role="presentation">
+                                                <a href="javascript:void(0);" role="menuitem" data-field="dataFechamento" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                    <span class="slds-truncate">Cortar texto</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </template>
+                                </th>
+                                </template>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={displayedCasos} for:item="c">
+                                <tr key={c.id}>
+                                    <td class="list-card__td-rownum">{c.rowNumber}</td>
+                                    <td class={numeroCellClass}>
+                                        <a href={c.recordUrl} data-record-id={c.id} onclick={handleRecordClick}>{c.numero}</a>
+                                    </td>
+                                    <template if:true={showAssunto}>
+                                    <td class={assuntoCellClass}>
+                                        <a href={c.recordUrl} data-record-id={c.id} onclick={handleRecordClick}>{c.assunto}</a>
+                                    </td>
+                                    </template>
+                                    <td class={contatoCellClass}>
+                                        <template if:true={c.contatoUrl}>
+                                            <a href={c.contatoUrl} data-record-id={c.contatoId} data-object="Contact" onclick={handleRelatedRecordClick}>{c.contato}</a>
+                                        </template>
+                                        <template if:false={c.contatoUrl}>
+                                            {c.contato}
+                                        </template>
+                                    </td>
+                                    <template if:true={showUsuarioEarly}>
+                                    <td class={usuarioCellClass}>
+                                        <template if:true={c.usuarioUrl}>
+                                            <a href={c.usuarioUrl} data-record-id={c.usuarioId} data-object="Contact" onclick={handleRelatedRecordClick}>{c.usuario}</a>
+                                        </template>
+                                        <template if:false={c.usuarioUrl}>
+                                            {c.usuario}
+                                        </template>
+                                    </td>
+                                    </template>
+                                    <template if:true={showEndereco}>
+                                    <td class={enderecoCellClass}>
+                                        <template if:true={c.enderecoUrl}>
+                                            <a href={c.enderecoUrl} data-record-id={c.enderecoId} data-object="Endere_o__c" onclick={handleRelatedRecordClick}>{c.endereco}</a>
+                                        </template>
+                                        <template if:false={c.enderecoUrl}>
+                                            {c.endereco}
+                                        </template>
+                                    </td>
+                                    </template>
+                                    <template if:true={showStatus}>
+                                    <td class={statusCellClass}>{c.statusCliente}</td>
+                                    </template>
+                                    <template if:true={showDataProgramada}>
+                                    <td class={dataProgramadaCellClass}>{c.dataProgramadaFormatada}</td>
+                                    </template>
+                                    <template if:true={showUsuarioLate}>
+                                    <td class={usuarioCellClass}>
+                                        <template if:true={c.usuarioUrl}>
+                                            <a href={c.usuarioUrl} data-record-id={c.usuarioId} data-object="Contact" onclick={handleRelatedRecordClick}>{c.usuario}</a>
+                                        </template>
+                                        <template if:false={c.usuarioUrl}>
+                                            {c.usuario}
+                                        </template>
+                                    </td>
+                                    </template>
+                                    <template if:true={showDataFechamento}>
+                                    <td class={dataFechamentoCellClass}>{c.dataFechamentoFormatada}</td>
+                                    </template>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+
+            <!-- Modo compacto (widget da Início): mantém o lightning-datatable já validado. -->
+            <template if:true={compact}>
+                <lightning-datatable
+                    key-field="id"
+                    data={displayedCasos}
+                    columns={columns}
+                    hide-checkbox-column
+                ></lightning-datatable>
+            </template>
+        </template>
+
+        <template if:true={showViewAllLink}>
+            <a href="javascript:void(0);" class="list-card__view-all" onclick={handleViewAllClick}>Exibir tudo</a>
+        </template>
+    </div>
+</template>

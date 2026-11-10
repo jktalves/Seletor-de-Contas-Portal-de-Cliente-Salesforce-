@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conga_Equipamentos__c</fullName>
+    <description>##Conga created button:00bU6000006bVxR</description>
+    <externalId>false</externalId>
+    <formula>&quot;&amp;id=&quot; + Id + 
+&quot;&amp;templateid=a08HY000004F8cc&quot; + 
+&quot;&amp;emailfromid=0D2310000008Qhg&quot; + 
+&quot;&amp;queryid=a07HY000000W1iL?pv0=&quot; + Id + 
+&quot;&amp;emailtoid=&quot; + Account.Destinat_rio__c + 
+&quot;&amp;emailtemplateid=00XHY000000M1Bq&quot; + 
+&quot;&amp;emailrelatedtoid=&quot; + Id + 
+&quot;&amp;qmode=SendEmail&quot;</formula>
+    <label>Conga - Equipamentos</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

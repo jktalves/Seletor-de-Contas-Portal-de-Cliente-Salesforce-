@@ -1,0 +1,65 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "0d64a814-4ba7-4cd0-9463-1a65ffc77cb6",
+  "label" : "Contrato Detalhe",
+  "regions" : [ {
+    "id" : "38565997-e156-4263-8773-ca5a56da87b1",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "forceCommunity:recordHeadline",
+      "id" : "9fe2e21f-7666-449f-8c5d-eb0d774015b0",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "detailsTabLabel" : "Details",
+        "discussionsTabLabel" : "Feed",
+        "recordId" : "{!recordId}",
+        "relatedTabLabel" : "Related",
+        "tab1Type" : "details",
+        "tab2Type" : "none",
+        "tab3Type" : "related",
+        "tab4Type" : "none",
+        "timelineTabLabel" : "Activity"
+      },
+      "componentName" : "forceCommunity:recordHomeTabs",
+      "id" : "48db728a-da92-4737-9080-2fb3325d4ab6",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "670a19da-d4fe-42fc-a06b-5b3618419454",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "ff047104-f7c7-4548-a1eb-6127760ace41",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "{!Record._Object}: {!Record._Title}"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "1850d184-7a43-49c4-a908-f919570497dc",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "59d6efe2-0d4c-46de-8eed-00e882a0c0dc",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "detail-a0V"
+}

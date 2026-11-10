@@ -1,0 +1,67 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "4b8f3bd2-5773-49b8-8fc0-4c85a5dcddd9",
+  "label" : "Licença de Software Detalhe",
+  "regions" : [ {
+    "id" : "dc17b01c-de1a-4a7a-a4bb-e1773dabcc8e",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "forceCommunity:recordHeadline",
+      "id" : "28627655-496f-449e-ab06-d6d83bcd0094",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "forceCommunity:recordDetail",
+      "id" : "adaf0704-59c0-4f9b-b330-b14fab773506",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}",
+        "width" : "MEDIUM"
+      },
+      "componentName" : "forceCommunity:relatedRecords",
+      "id" : "7926b37b-70d2-482b-af61-9e3f25dc4b31",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "0378cb1a-a273-4726-8670-5f758b4968aa",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "5ac5780a-88ce-4cbf-87ff-0839a12c1c37",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "{!Record._Object}: {!Record._Title}"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "f4fa0395-7ebb-4d91-880f-018dfe57be16",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "14f6c212-03d3-41b7-b789-8698684a19bb",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "detail-a0D"
+}

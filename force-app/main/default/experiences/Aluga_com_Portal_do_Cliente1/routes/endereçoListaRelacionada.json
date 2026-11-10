@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "320eb0d9-7237-442b-838b-0ddf9918e1a0",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "relatedlist_a10__c",
+  "id" : "af3fb48e-cea6-4681-be11-bb012335af06",
+  "label" : "Endereço Lista relacionada",
+  "objectApiName" : "Endere_o__c",
+  "routeType" : "relatedlist-a10",
+  "type" : "route",
+  "urlPrefix" : "endere-o"
+}

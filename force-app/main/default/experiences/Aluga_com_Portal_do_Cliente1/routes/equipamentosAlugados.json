@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "62b451e9-8588-4744-bf0f-2a6a1572f330",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "equipamentos_alugados__c",
+  "id" : "78724d55-0393-4973-bfbd-01fa33be0dc6",
+  "label" : "Equipamentos Alugados",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-equipamentos-alugados",
+  "type" : "route",
+  "urlPrefix" : "equipamentos-alugados"
+}

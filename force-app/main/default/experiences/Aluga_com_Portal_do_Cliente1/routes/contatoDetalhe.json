@@ -1,0 +1,11 @@
+{
+  "activeViewId" : "db80fba5-9280-4475-bc25-d29872f467d9",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "Contato_Detalhe__c",
+  "id" : "c62f78ee-cc93-47d4-b340-0f2e533cd215",
+  "label" : "Contato Detalhe",
+  "routeType" : "detail-003",
+  "type" : "route",
+  "urlPrefix" : "contact"
+}

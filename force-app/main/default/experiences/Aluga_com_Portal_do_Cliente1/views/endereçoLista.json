@@ -1,0 +1,46 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "ef9d4c36-6a38-4d92-8b38-e3f52c417a9b",
+  "label" : "Endereço Lista",
+  "regions" : [ {
+    "id" : "2fbf3ae0-3b02-4f30-b6a5-0650ba3669cd",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "enableInlineEdit" : false,
+        "filterName" : "{!filterId}",
+        "layout" : "FULL",
+        "pageSize" : 25,
+        "scope" : "{!objectName}",
+        "showActionBar" : false,
+        "showChartsPanel" : false,
+        "showDisplay" : "showall",
+        "showFilterPanel" : true,
+        "showImageIcon" : true,
+        "showManualRefreshButton" : true,
+        "showObjectName" : true,
+        "showPinnedList" : true,
+        "showSearchBar" : true
+      },
+      "componentName" : "forceCommunity:objectHome",
+      "id" : "ad38aa3a-8eb7-4ac8-a092-20f6e5c601d3",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "b6f94c88-f5f1-4b48-822e-8fce01d7030d",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "e18538be-5934-4f7a-bb9f-0b1f8924f2ef",
+    "regionName" : "footer",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "list-a10"
+}

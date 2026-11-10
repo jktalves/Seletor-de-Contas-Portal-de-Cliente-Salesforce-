@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <description>Esse status é usado como filtro de listas de exibição e no registro do portal de cliente.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+/* 1. Checagem Prioritária: Se estiver Finalizado, encerra imediatamente */
+ISPICKVAL(Oportunidade__r.StageName, &quot;Finalizado&quot;), &quot;Encerrado&quot;,
+
+/* 2. Se não estiver finalizado, verifica as condições de &quot;Ativo&quot; */
+IF(
+ISPICKVAL(Oportunidade__r.Est_gio__c, &quot;Pronto para Entregar&quot;) ||
+(ISPICKVAL(Oportunidade__r.Est_gio__c, &quot;&quot;) &amp;&amp; ISPICKVAL(Oportunidade__r.StageName, &quot;Aprovado&quot;)),
+&quot;Ativo&quot;,
+
+/* 3. Caso contrário, avalia os demais status via CASE */
+CASE(TEXT(Oportunidade__r.StageName),
+  /* &quot;Finalizado&quot; já foi tratado no topo, mas pode manter aqui ou remover */
+  &quot;Aprovado&quot;, &quot;Novo&quot;,
+  &quot;Proposta&quot;, &quot;Novo&quot;,
+  &quot;Perdido&quot;, &quot;Cancelado&quot;,
+  &quot;Projeto postergado&quot;, &quot;Cancelado&quot;,
+  &quot;Reprovado&quot;, &quot;Cancelado&quot;,
+  &quot;&quot;
+)
+
+
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,49 @@
+<template>
+    <div class="slds-var-p-around_small account-switcher" role="region" aria-label="Seletor de conta ativa">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Carregando contas" size="small"></lightning-spinner>
+        </template>
+
+        <template if:false={isLoading}>
+            <template if:true={errorMessage}>
+                <div class="slds-text-color_error slds-var-p-around_x-small" role="alert">
+                    {errorMessage}
+                </div>
+            </template>
+
+            <template if:false={errorMessage}>
+                <template if:false={hasAccounts}>
+                    <div class="slds-text-color_weak slds-var-p-around_x-small">
+                        Nenhuma conta disponível para este usuário.
+                    </div>
+                </template>
+
+                <template if:true={hasSingleAccount}>
+                    <div class="account-switcher__single">
+                        <p class="slds-text-title slds-text-color_weak">Empresa atual</p>
+                        <p class="slds-text-heading_small">
+                            {selectedAccount.name}
+                            <template if:true={selectedAccount.cnpj}>
+                                <span class="slds-text-body_small slds-text-color_weak">
+                                    &nbsp;— CNPJ {selectedAccount.cnpj}
+                                </span>
+                            </template>
+                        </p>
+                    </div>
+                </template>
+
+                <template if:true={showDropdown}>
+                    <lightning-combobox
+                        name="accountSwitcher"
+                        label="Empresa atual"
+                        value={selectedAccountId}
+                        options={selectOptions}
+                        onchange={handleChange}
+                        variant="label-hidden"
+                        placeholder="Selecione a empresa"
+                    ></lightning-combobox>
+                </template>
+            </template>
+        </template>
+    </div>
+</template>

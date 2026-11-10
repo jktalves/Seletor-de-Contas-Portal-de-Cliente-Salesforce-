@@ -1,0 +1,125 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "2f623cd4-ca33-47e4-b667-7baeb33e5623",
+  "label" : "Suporte Técnico",
+  "regions" : [ {
+    "id" : "9914d3ba-58a6-4433-8275-f1753ffea005",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "align" : "Left",
+        "applyCardBackground" : false,
+        "autoLaunchFlow" : true,
+        "buttonBackgroundColor" : "",
+        "buttonBorderRadius" : "",
+        "buttonHeight" : "100px",
+        "buttonLabel" : "Solicitar Suporte",
+        "buttonTextColor" : "",
+        "buttonTextSize" : "",
+        "buttonWidth" : "100px",
+        "closeButtonText" : "Fechar",
+        "fixedButtonWidthHeight" : false,
+        "fixedModalWidthHeight" : false,
+        "flowInputVariablesString" : "",
+        "flowModalHeader" : "Suporte Técnico",
+        "flowName" : "Caso_Cria_o_de_Registro_no_Portal",
+        "hideButton" : false,
+        "hideFlowTransitionOverlay" : true,
+        "hideModalCloseButton" : false,
+        "modalHeight" : "800",
+        "modalWidth" : "1200",
+        "redirectUrlOnFlowCompletion" : "",
+        "refreshPageOnFlowCompletion" : false,
+        "renderFooter" : false
+      },
+      "componentName" : "sf_flowmodal:ccp_launchFlowModal",
+      "id" : "937f3321-d5a9-4c3d-97f0-4fcd07ed1b37",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "align" : "Left",
+        "applyCardBackground" : false,
+        "autoLaunchFlow" : false,
+        "buttonBackgroundColor" : "",
+        "buttonBorderRadius" : "",
+        "buttonHeight" : "100px",
+        "buttonLabel" : "Exportar em Planilha",
+        "buttonTextColor" : "",
+        "buttonTextSize" : "",
+        "buttonWidth" : "100px",
+        "closeButtonText" : "Fechar",
+        "fixedButtonWidthHeight" : false,
+        "fixedModalWidthHeight" : false,
+        "flowInputVariablesString" : "",
+        "flowModalHeader" : "Exportar em Planilha",
+        "flowName" : "Chamado_TEL_Exporta_o_de_Chamados_no_Portal_de_Clientes",
+        "hideButton" : false,
+        "hideFlowTransitionOverlay" : true,
+        "hideModalCloseButton" : false,
+        "modalHeight" : "800px",
+        "modalWidth" : "1200px",
+        "redirectUrlOnFlowCompletion" : "",
+        "refreshPageOnFlowCompletion" : false,
+        "renderFooter" : false
+      },
+      "componentName" : "sf_flowmodal:ccp_launchFlowModal",
+      "id" : "169257c3-f901-41cb-afca-de7a18334184",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "enableInlineEdit" : false,
+        "filterName" : "Chamados_abertos",
+        "layout" : "FULL",
+        "pageSize" : 25,
+        "scope" : "Case",
+        "showActionBar" : false,
+        "showChartsPanel" : false,
+        "showDisplay" : "showall",
+        "showFilterPanel" : true,
+        "showImageIcon" : true,
+        "showManualRefreshButton" : true,
+        "showObjectName" : true,
+        "showPinnedList" : true,
+        "showSearchBar" : true
+      },
+      "componentName" : "forceCommunity:objectHome",
+      "id" : "e161be00-d66b-4e52-91dd-d2bc9326ac8f",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "4f1caec2-dd2f-4dbb-95f4-ab36744c0416",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "c50620b9-59a2-47bb-b0ed-d2feaa08d398",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Suporte Técnico"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "fb41e6df-1830-420d-b34a-5802465dfa81",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "02855e62-f0f5-46ba-a08b-61042d934efa",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-suporte-tecnico"
+}

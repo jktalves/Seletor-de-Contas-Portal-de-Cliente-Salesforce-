@@ -1,0 +1,11 @@
+{
+  "activeViewId" : "38d27a38-3f25-4c35-ac03-21dec5272cf6",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "Contato_Lista__c",
+  "id" : "6d69df9c-9eac-4354-a302-85241246c0a3",
+  "label" : "Contato Lista",
+  "routeType" : "list-003",
+  "type" : "route",
+  "urlPrefix" : "contact"
+}

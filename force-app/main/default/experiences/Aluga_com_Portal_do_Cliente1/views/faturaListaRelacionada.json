@@ -1,0 +1,39 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "ee3a1f7f-91bc-4999-b429-ae872a5eb95e",
+  "label" : "Fatura Lista relacionada",
+  "regions" : [ {
+    "id" : "b5830f91-7579-4709-ba8c-0d3ee5070942",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customTitle" : "",
+        "parentRecordId" : "{!recordId}",
+        "relatedListName" : "{!relationshipApiName}",
+        "showBreadCrumbs" : true,
+        "showCustomTitle" : false,
+        "showManualRefreshButton" : true,
+        "showRowNumbers" : true
+      },
+      "componentName" : "forceCommunity:relatedList",
+      "id" : "7aa78b97-b401-4585-8a29-08e7ff34378d",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "308e398b-d983-414f-abd6-3e7ef81aa9c0",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "f3b3d40f-2e9e-40e3-8e82-0a0079bcab59",
+    "regionName" : "footer",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "relatedlist-a00"
+}

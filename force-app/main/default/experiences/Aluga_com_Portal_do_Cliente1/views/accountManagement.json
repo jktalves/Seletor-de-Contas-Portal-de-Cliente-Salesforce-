@@ -1,0 +1,120 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "fcdb8865-1420-401e-b7b0-5c974f76944e",
+  "label" : "Account Management",
+  "regions" : [ {
+    "id" : "67acb32a-84c6-4532-ba1a-86d6414488a8",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "tabsetConfig" : {
+          "UUID" : "e2fe9363-4903-4a45-94a9-d1f32257e9c2",
+          "activeTab" : "tab1",
+          "tabs" : [ {
+            "UUID" : "e1318f76-3c1d-4e38-8408-e9886a33c5e1",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ {
+              "attributes" : {
+                "customTitle" : "Members",
+                "parentRecordId" : "{!CurrentUser.accountId}",
+                "relatedListName" : "Users",
+                "showBreadCrumbs" : "false",
+                "showCustomTitle" : "true",
+                "showManualRefreshButton" : "false",
+                "showRowNumbers" : "false"
+              },
+              "fqn" : "forceCommunity:relatedList"
+            } ],
+            "tabKey" : "tab1",
+            "tabName" : "Members"
+          }, {
+            "UUID" : "bfd5b053-da1d-43b0-8714-6c00e4d9483d",
+            "allowGuestUser" : false,
+            "locked" : false,
+            "seedComponents" : [ {
+              "attributes" : {
+                "recordId" : "{!CurrentUser.accountId}"
+              },
+              "fqn" : "forceCommunity:accountBrandRecord"
+            } ],
+            "tabKey" : "tab2",
+            "tabName" : "Branding"
+          } ],
+          "useOverflowMenu" : false
+        }
+      },
+      "componentName" : "forceCommunity:tabset",
+      "id" : "e2fe9363-4903-4a45-94a9-d1f32257e9c2",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "customTitle" : "Members",
+            "parentRecordId" : "{!CurrentUser.accountId}",
+            "relatedListName" : "Users",
+            "showBreadCrumbs" : false,
+            "showCustomTitle" : true,
+            "showManualRefreshButton" : false,
+            "showRowNumbers" : false
+          },
+          "componentName" : "forceCommunity:relatedList",
+          "id" : "74b3191e-36c5-44ec-9278-7920245057a5",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "e1318f76-3c1d-4e38-8408-e9886a33c5e1",
+        "regionLabel" : "Members",
+        "regionName" : "tab1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "recordId" : "{!CurrentUser.accountId}"
+          },
+          "componentName" : "forceCommunity:accountBrandRecord",
+          "id" : "52e88961-4007-4a21-8493-5310341163e8",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "bfd5b053-da1d-43b0-8714-6c00e4d9483d",
+        "regionLabel" : "Branding",
+        "regionName" : "tab2",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "eb29970c-828d-444a-8062-bd48072f113a",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "7dc4f25c-8c51-424e-a0aa-c13ad323e111",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Informações Sobre a Empresa"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "18809224-879a-4029-82c9-1056be1f0189",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "779cd445-eb87-43a5-8164-ea08e2a979ad",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "account-management"
+}

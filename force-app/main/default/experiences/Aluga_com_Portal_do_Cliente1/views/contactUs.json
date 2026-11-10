@@ -1,0 +1,53 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsTwoCol66Layout",
+  "dataProviders" : [ ],
+  "id" : "c0cbb524-b0f0-4055-a555-5f4f441b4933",
+  "label" : "Contact Us",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "flowArguments" : "[{\"label\":\"accid\",\"dataType\":\"String\",\"supportsRecordId\":false,\"value\":\"001i000000KKsQv\"}]",
+        "flowName" : "Criar_Caso"
+      },
+      "componentName" : "forceCommunity:flowCommunity",
+      "id" : "cf77bf7c-e1ea-4595-b2eb-60afcd68600d",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "520c852a-4dc4-40e6-be48-33a43499cd8b",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "id" : "c988790a-ce49-4fd0-a28e-81c08589067b",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "c8e2d017-bffd-4a28-aad7-71e959318e7e",
+    "regionName" : "sidebar",
+    "type" : "region"
+  }, {
+    "id" : "54cfc550-dae7-45d4-ba9e-5215b91cf2ad",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Contact Us"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "56f87e6d-45f9-47ab-94f9-59c2a20cabda",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "1340c76e-9c56-4e40-a889-8f5b9d6ea066",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "contactsupport"
+}

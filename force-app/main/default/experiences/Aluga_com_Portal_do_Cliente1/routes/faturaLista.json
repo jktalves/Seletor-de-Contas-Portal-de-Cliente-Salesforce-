@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "fa67ef8e-a206-4dc1-b23d-557e67bdf2d4",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "Fatura_Lista__c",
+  "id" : "5d429841-7d83-414d-a9b9-284138a29ce1",
+  "label" : "Fatura Lista",
+  "objectApiName" : "Fatura__c",
+  "routeType" : "list-a00",
+  "type" : "route",
+  "urlPrefix" : "fatura"
+}

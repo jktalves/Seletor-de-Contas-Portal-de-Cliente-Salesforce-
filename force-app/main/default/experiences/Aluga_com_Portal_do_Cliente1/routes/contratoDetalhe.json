@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "0d64a814-4ba7-4cd0-9463-1a65ffc77cb6",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "Contrato_Detalhe__c",
+  "id" : "9ec84cbd-45f7-4dda-9fd7-5be77da5a7c5",
+  "label" : "Contrato Detalhe",
+  "objectApiName" : "Oportunidade_Aprovada__c",
+  "routeType" : "detail-a0V",
+  "type" : "route",
+  "urlPrefix" : "contrato"
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Equipamentos_Alugados</fullName>
+    <columns>NAME</columns>
+    <columns>Descri_o_modelo_e_processador__c</columns>
+    <columns>Contrato_Portal__c</columns>
+    <columns>conta__c</columns>
+    <columns>DataEntrega__c</columns>
+    <columns>Contato_Usu_rio__c</columns>
+    <columns>Valor_de_loca_o_f_rmula__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>OK,A Preparar,Preparar,Reservado,Funcional,Pre-cadastro</value>
+    </filters>
+    <label>Equipamentos Alugados</label>
+</ListView>

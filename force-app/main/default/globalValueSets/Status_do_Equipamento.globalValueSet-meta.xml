@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>OK</fullName>
+        <default>false</default>
+        <label>OK</label>
+    </customValue>
+    <customValue>
+        <fullName>A Preparar</fullName>
+        <default>false</default>
+        <label>A Preparar</label>
+    </customValue>
+    <customValue>
+        <fullName>Reservado</fullName>
+        <default>false</default>
+        <label>Reservado</label>
+    </customValue>
+    <customValue>
+        <fullName>Manutenção</fullName>
+        <default>false</default>
+        <label>Manutenção</label>
+    </customValue>
+    <customValue>
+        <fullName>Revisão</fullName>
+        <default>false</default>
+        <label>Revisão</label>
+    </customValue>
+    <customValue>
+        <fullName>Pendência</fullName>
+        <default>false</default>
+        <label>Pendência</label>
+    </customValue>
+    <customValue>
+        <fullName>Extravios</fullName>
+        <default>false</default>
+        <label>Extravios</label>
+    </customValue>
+    <customValue>
+        <fullName>Manutenção - Aguardando peças</fullName>
+        <default>false</default>
+        <label>Manutenção - Aguardando peças</label>
+    </customValue>
+    <customValue>
+        <fullName>AssistenciaTec</fullName>
+        <default>false</default>
+        <label>Assistência técnica</label>
+    </customValue>
+    <customValue>
+        <fullName>Funcional</fullName>
+        <default>false</default>
+        <label>Funcional</label>
+    </customValue>
+    <customValue>
+        <fullName>Estoque RJ / Em Locação</fullName>
+        <default>false</default>
+        <label>Estoque RJ / Em Locação</label>
+    </customValue>
+    <customValue>
+        <fullName>Estoque SP / Em Locação</fullName>
+        <default>false</default>
+        <label>Estoque SP / Em Locação</label>
+    </customValue>
+    <customValue>
+        <fullName>Pre-cadastro</fullName>
+        <default>false</default>
+        <label>Pre-cadastro</label>
+    </customValue>
+    <customValue>
+        <fullName>Uso Interno</fullName>
+        <default>false</default>
+        <label>Uso Interno</label>
+    </customValue>
+    <customValue>
+        <fullName>Destinado à venda</fullName>
+        <default>false</default>
+        <label>Destinado à venda</label>
+    </customValue>
+    <customValue>
+        <fullName>Vendido</fullName>
+        <default>false</default>
+        <label>Vendido</label>
+    </customValue>
+    <customValue>
+        <fullName>Vendido, doado ou descartado</fullName>
+        <default>false</default>
+        <label>Doado ou descartado</label>
+    </customValue>
+    <customValue>
+        <fullName>Sucata</fullName>
+        <default>false</default>
+        <label>Sucata</label>
+    </customValue>
+    <customValue>
+        <fullName>Sub-locação</fullName>
+        <default>false</default>
+        <label>Sub-locação</label>
+    </customValue>
+    <customValue>
+        <fullName>desativado</fullName>
+        <default>false</default>
+        <label>Desativado</label>
+    </customValue>
+    <customValue>
+        <fullName>Bloqueado</fullName>
+        <default>false</default>
+        <label>Bloqueado</label>
+    </customValue>
+    <customValue>
+        <fullName>Devolução pendente (clientes)</fullName>
+        <default>false</default>
+        <label>Devolução pendente (clientes)</label>
+    </customValue>
+    <customValue>
+        <fullName>Não Encontrado</fullName>
+        <default>false</default>
+        <label>Não Encontrado</label>
+    </customValue>
+    <customValue>
+        <fullName>Devolução Pendente (transportadora)</fullName>
+        <default>false</default>
+        <label>Devolução Pendente (transportadora)</label>
+    </customValue>
+    <customValue>
+        <fullName>Propriedade do cliente</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Propriedade do cliente</label>
+    </customValue>
+    <customValue>
+        <fullName>indisponível</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>indisponível</label>
+    </customValue>
+    <customValue>
+        <fullName>disponível</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>disponível</label>
+    </customValue>
+    <customValue>
+        <fullName>desaparecido</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>desaparecido</label>
+    </customValue>
+    <customValue>
+        <fullName>Preparar</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>A Preparar</label>
+    </customValue>
+    <customValue>
+        <fullName>OCS</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>OCS</label>
+    </customValue>
+    <customValue>
+        <fullName>AssistenciaTecnica</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Assistência Técnica</label>
+    </customValue>
+    <customValue>
+        <fullName>Secundário</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Secundário</label>
+    </customValue>
+    <masterLabel>Status do Equipamento</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,11 @@
+{
+  "activeViewId" : "7e46c523-1ec5-4534-b9e5-5fba2325d500",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "Emblema_Recebido_Lista_relacionada__c",
+  "id" : "2672613b-554e-46f6-91d0-326082d244fa",
+  "label" : "Emblema Recebido Lista relacionada",
+  "routeType" : "relatedlist-0W2",
+  "type" : "route",
+  "urlPrefix" : "RecognitionBadge"
+}

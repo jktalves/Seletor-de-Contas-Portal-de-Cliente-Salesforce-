@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Conga_Trigger_Equipamentos_Contato</name>
+        <label>Conga Trigger - Equipamentos (Contato)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Contact.Conga_Trigger_Equipamentos_Contato</actionName>
+        <actionType>outboundMessage</actionType>
+        <connector>
+            <targetReference>Desmarcar_Checkbox</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <nameSegment>Contact.Conga_Trigger_Equipamentos_Contato</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>Parte da solução de exportação de planilha de inventário do portal de clientes.
+Chama o outbound message que envia a planilha de inventário por e-mail quando o checkbox de gatilho é marcado.</description>
+    <environments>Default</environments>
+    <interviewLabel>Conga Trigger [RTF] [AS] - Inventário portal {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Conga Trigger [RTF] [AS] - Inventário de equipamentos do portal de clientes</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Desmarcar_Checkbox</name>
+        <label>Desmarcar Checkbox</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Conga_Equipamentos_Gatilho__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Conga_Trigger_Equipamentos_Contato</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Conga_Equipamentos_Gatilho__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

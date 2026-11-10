@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Novos_Pedidos</fullName>
+    <columns>NAME</columns>
+    <columns>Contato__c</columns>
+    <columns>Nome_do_Usu_rio__c</columns>
+    <columns>Endere_o__c</columns>
+    <columns>data_entrega__c</columns>
+    <columns>Status__c</columns>
+    <columns>Valor__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Novo,Em análise</value>
+    </filters>
+    <label>Pedidos novos</label>
+    <language>en_US</language>
+</ListView>

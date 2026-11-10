@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conta_Ativa__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Conta atualmente selecionada no Seletor de Contas do portal (Aluga.com Portal do Cliente). Atualizada automaticamente pelo AccountSwitcherController.selectAccount() sempre que o contato troca de conta no seletor. Usada por Flows já existentes (ex.: formulário de abertura de chamado no portal, exportação via Conga) pra saber qual conta usar sem precisar chamar uma Action — pedido do Gustavo (CTO) em 30/09/2026. Limitação conhecida: é por Contato, não por aba/sessão do navegador.</description>
+    <label>Conta Ativa (Portal)</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Contatos (Conta Ativa no Portal)</relationshipLabel>
+    <relationshipName>Contatos_Conta_Ativa_Portal</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

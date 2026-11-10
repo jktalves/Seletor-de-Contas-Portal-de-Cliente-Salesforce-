@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "90ff7010-5f5b-462c-83d4-455d4e62dc8d",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "relatedlist_a0D__c",
+  "id" : "764775b1-f8c7-4503-bdc9-f8d8253ee7f1",
+  "label" : "Licença de Software Lista relacionada",
+  "objectApiName" : "Licen_a_de_Software__c",
+  "routeType" : "relatedlist-a0D",
+  "type" : "route",
+  "urlPrefix" : "licen-a-de-software"
+}

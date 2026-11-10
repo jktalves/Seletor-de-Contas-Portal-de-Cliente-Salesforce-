@@ -1,0 +1,11 @@
+{
+  "activeViewId" : "7c699cf4-e7b1-413b-b5f2-19072b670b53",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "Painel_Related_List",
+  "id" : "f023346c-f978-4e6a-b01c-864076b57692",
+  "label" : "Painel Related List",
+  "routeType" : "relatedlist-01Z",
+  "type" : "route",
+  "urlPrefix" : "painel"
+}

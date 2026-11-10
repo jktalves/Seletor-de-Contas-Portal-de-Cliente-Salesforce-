@@ -1,0 +1,64 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "405acf76-9c6f-4e06-981c-a9be32b44be0",
+  "label" : "Caso Lista",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "align" : "Left",
+        "applyCardBackground" : false,
+        "autoLaunchFlow" : false,
+        "buttonBackgroundColor" : "",
+        "buttonBorderRadius" : "",
+        "buttonHeight" : "100px",
+        "buttonLabel" : "Solicitar Suporte",
+        "buttonTextColor" : "",
+        "buttonTextSize" : "",
+        "buttonWidth" : "100px",
+        "closeButtonText" : "Close",
+        "fixedButtonWidthHeight" : false,
+        "fixedModalWidthHeight" : false,
+        "flowInputVariablesString" : "",
+        "flowModalHeader" : "Solicitar Suporte",
+        "flowName" : "Caso_Cria_o_de_Registro_no_Portal",
+        "hideButton" : false,
+        "hideFlowTransitionOverlay" : true,
+        "hideModalCloseButton" : false,
+        "modalHeight" : "600px",
+        "modalWidth" : "800px",
+        "redirectUrlOnFlowCompletion" : "",
+        "refreshPageOnFlowCompletion" : false,
+        "renderFooter" : false
+      },
+      "componentName" : "sf_flowmodal:ccp_launchFlowModal",
+      "id" : "0b69af9d-08c5-4a5a-8f26-eb06a88f9617",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "152fb2de-d905-4eed-8cc0-139d8d561217",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:casoLista",
+      "id" : "3f743ab2-9a4f-42b3-a77a-066cf8a2206d",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "b8288130-e795-4d84-907f-a693abd62417",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "08814dfe-89dd-4364-8634-1cb956dc587d",
+    "regionName" : "footer",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "list-500"
+}

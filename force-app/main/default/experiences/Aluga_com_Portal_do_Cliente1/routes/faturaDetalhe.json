@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "1d65a319-bcdf-45b9-a509-9878393aad6d",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "Fatura_Detalhe__c",
+  "id" : "2d6414bb-102e-4c1b-bfb6-9b00f59443c4",
+  "label" : "Fatura Detalhe",
+  "objectApiName" : "Fatura__c",
+  "routeType" : "detail-a00",
+  "type" : "route",
+  "urlPrefix" : "fatura"
+}

@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "4b8f3bd2-5773-49b8-8fc0-4c85a5dcddd9",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "detail_a0D__c",
+  "id" : "ae3219de-c9aa-47a5-8bde-30ccb67f7e9f",
+  "label" : "Licença de Software Detalhe",
+  "objectApiName" : "Licen_a_de_Software__c",
+  "routeType" : "detail-a0D",
+  "type" : "route",
+  "urlPrefix" : "licen-a-de-software"
+}

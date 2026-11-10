@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "b37fce0b-c6ae-4b40-af9b-706abd7090c6",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "Contrato_Lista__c",
+  "id" : "e8275d82-2fcf-4a44-8541-36b52640d566",
+  "label" : "Contrato Lista",
+  "objectApiName" : "Oportunidade_Aprovada__c",
+  "routeType" : "list-a0V",
+  "type" : "route",
+  "urlPrefix" : "contrato"
+}

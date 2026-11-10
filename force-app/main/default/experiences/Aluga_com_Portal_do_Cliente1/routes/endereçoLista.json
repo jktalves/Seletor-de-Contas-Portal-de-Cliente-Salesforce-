@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "ef9d4c36-6a38-4d92-8b38-e3f52c417a9b",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "list_a10__c",
+  "id" : "defa856c-b30b-4e83-9490-3ca593c4dc30",
+  "label" : "Endereço Lista",
+  "objectApiName" : "Endere_o__c",
+  "routeType" : "list-a10",
+  "type" : "route",
+  "urlPrefix" : "endere-o"
+}

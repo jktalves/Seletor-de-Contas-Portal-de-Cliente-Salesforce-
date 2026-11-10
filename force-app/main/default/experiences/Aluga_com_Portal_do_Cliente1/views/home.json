@@ -1,0 +1,124 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsTwoCol66Layout",
+  "dataProviders" : [ ],
+  "id" : "819d23ac-0290-43c3-be38-222102604913",
+  "label" : "Home",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "height" : "485",
+        "recordId" : "xZdNHUSxDokzAZDtHOUXLsblqYCVKr"
+      },
+      "componentName" : "forceCommunity:dashboard",
+      "id" : "3c9b4b05-6a75-4ef0-8496-f93e1899eeba",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "e7e391f8-99ac-4069-80a7-f5924799f031",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "bannerBackgroundColor" : "rgb(60, 60, 60)",
+        "bannerPosition" : "top",
+        "bannerSizePercent" : 15,
+        "borderRadius" : 0,
+        "boxShadow" : false,
+        "haveBanner" : false,
+        "iconBackgroundColor" : "rgb(255,255,255)",
+        "iconSize" : "medium",
+        "noImageColor" : "rgb(212, 212, 212)",
+        "overlay" : "rgba(0, 0, 0, 0.7)",
+        "templateType" : "default",
+        "tileMenuEditor" : "Menu_da_Homepage",
+        "titleColor" : "",
+        "titleFontSize" : "medium",
+        "titleHorizontalAlign" : "center"
+      },
+      "componentName" : "community_navigation:tileMenu",
+      "id" : "fdeb1b05-f83d-4351-83ee-6092728620ab",
+      "renderPriority" : "HIGHEST",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "fc5cbe64-f562-4339-b004-5e9640fbf79d",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "compact" : true,
+        "maxRows" : 8,
+        "initialView" : "Em_andamento"
+      },
+      "componentName" : "c:casoLista",
+      "id" : "304cfd1e-9169-4cc1-9b88-86f0a7fd6a5c",
+      "renderPriority" : "HIGHEST",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "f5c7a859-7be1-4dc4-91e5-d5c11d1043b4",
+    "regionName" : "sidebar",
+    "type" : "region"
+  }, {
+    "id" : "bf54c47a-cd3a-4ba2-9462-2b878399f9ed",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Início"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "db001b5c-a4eb-463b-bdfa-f2e5b11e712a",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "22cd9213-5ead-4ea5-bd44-338063d5847e",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "bannerText" : "",
+        "bannerTextWithKnowledge" : "",
+        "bannerTextWithoutKnowledge" : "",
+        "pageType" : "",
+        "showSubTopics" : true,
+        "title" : "Chamados Recentes",
+        "uniqueNameOrId" : ""
+      },
+      "componentName" : "forceCommunity:headline",
+      "id" : "a0da532c-0603-4ac0-a6b2-487e3da8cc9e",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "compact" : true,
+        "maxRows" : 20,
+        "initialView" : "Todos"
+      },
+      "componentName" : "c:casoLista",
+      "id" : "7f8dc121-6e7f-4625-8173-d2a7851929c3",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "40b100ec-b7ad-470f-a53c-19558ea2739f",
+    "regionName" : "sidebarAlt",
+    "type" : "region"
+  }, {
+    "id" : "bf23bb39-316a-4e96-a061-765d260a6154",
+    "regionName" : "featured",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "home"
+}

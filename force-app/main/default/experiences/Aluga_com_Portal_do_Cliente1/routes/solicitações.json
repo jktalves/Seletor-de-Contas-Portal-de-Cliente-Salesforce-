@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "1d0237cd-83c6-47a2-b327-5546951cca5a",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "solicitacoes__c",
+  "id" : "414b5d1f-4d09-4c10-b8a5-a2a881af0254",
+  "label" : "Solicitações",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-solicitacoes",
+  "type" : "route",
+  "urlPrefix" : "solicitacoes"
+}

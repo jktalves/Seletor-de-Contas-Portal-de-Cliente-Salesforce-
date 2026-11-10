@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "5d58a179-2f79-481b-be9b-f07025eb5542",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "Equipamento_Lista__c",
+  "id" : "7471afa2-49a4-4400-a604-d6eeb04c18ef",
+  "label" : "Equipamento Lista",
+  "objectApiName" : "Equipamento__c",
+  "routeType" : "list-a0U",
+  "type" : "route",
+  "urlPrefix" : "equipamento"
+}

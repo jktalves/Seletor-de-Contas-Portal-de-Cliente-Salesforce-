@@ -1,0 +1,78 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "fa67ef8e-a206-4dc1-b23d-557e67bdf2d4",
+  "label" : "Fatura Lista",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "align" : "Left",
+        "applyCardBackground" : false,
+        "autoLaunchFlow" : false,
+        "buttonBackgroundColor" : "",
+        "buttonBorderRadius" : "",
+        "buttonHeight" : "100px",
+        "buttonLabel" : "Exportar em Planilha",
+        "buttonTextColor" : "",
+        "buttonTextSize" : "",
+        "buttonWidth" : "100px",
+        "closeButtonText" : "Fechar",
+        "fixedButtonWidthHeight" : false,
+        "fixedModalWidthHeight" : false,
+        "flowInputVariablesString" : "",
+        "flowModalHeader" : "",
+        "flowName" : "Conta_Faturas_da_Conta_Tela",
+        "hideButton" : false,
+        "hideFlowTransitionOverlay" : true,
+        "hideModalCloseButton" : false,
+        "modalHeight" : "600px",
+        "modalWidth" : "800px",
+        "redirectUrlOnFlowCompletion" : "",
+        "refreshPageOnFlowCompletion" : false,
+        "renderFooter" : false
+      },
+      "componentName" : "sf_flowmodal:ccp_launchFlowModal",
+      "id" : "29e3fe9c-6f55-4659-88a2-920602f75c64",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "flowArguments" : "",
+        "flowName" : "Fatura_Status_da_fatura_no_portal"
+      },
+      "componentName" : "forceCommunity:flowCommunity",
+      "id" : "1f6f90e2-bbe1-495b-8d8e-def19f02addb",
+      "renderPriority" : "HIGH",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "8a11c0bf-5808-4d28-9cfb-cca93b7ab85c",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:faturaLista",
+      "id" : "cc001122-aaaa-bbbb-cccc-ddddeeee0004",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "8a11c0bf-5808-4d28-9cfb-000000000004",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "f0eccc5f-a368-4c12-8e88-821b3ecb4f1c",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "id" : "93a725cd-0a48-4279-9b8a-a16e18d3e0b3",
+    "regionName" : "sidebar",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "list-a00"
+}

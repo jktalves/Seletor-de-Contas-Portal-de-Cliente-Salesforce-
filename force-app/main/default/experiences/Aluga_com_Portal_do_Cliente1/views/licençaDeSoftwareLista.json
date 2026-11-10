@@ -1,0 +1,31 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "bb9caaba-6918-434d-b599-4f119229abc6",
+  "label" : "Licença de Software Lista",
+  "regions" : [ {
+    "id" : "3d776379-8f79-4f4b-8d3e-0777081d30f7",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:licencaSoftwareLista",
+      "id" : "cc001122-aaaa-bbbb-cccc-ddddeeee0002",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "3d776379-8f79-4f4b-8d3e-000000000002",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "827a16b8-9aca-4988-8d0b-84e20a8a30c9",
+    "regionName" : "footer",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "list-a0D"
+}

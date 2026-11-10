@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Account Context Channel</masterLabel>
+    <isExposed>true</isExposed>
+    <description>Publica a Conta (CNPJ) ativa no portal, escolhida no Account Switcher e já validada no Apex, para que os demais componentes filtrem seus dados por ela. Não é mecanismo de segurança: o backend revalida cada acesso.</description>
+    <lightningMessageFields>
+        <fieldName>accountId</fieldName>
+        <description>Id da Account ativa, previamente autorizada pelo Apex (AccountSwitcherController).</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>accountName</fieldName>
+        <description>Nome da Account ativa.</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>accountCnpj</fieldName>
+        <description>CNPJ da Account ativa, quando disponível.</description>
+    </lightningMessageFields>
+</LightningMessageChannel>

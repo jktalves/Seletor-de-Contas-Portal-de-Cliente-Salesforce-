@@ -1,0 +1,299 @@
+﻿<template>
+    <div class="list-card">
+        <div class="list-card__toolbar">
+            <div class="list-card__toolbar-left">
+                <div class="list-card__view-select-wrap">
+                    <button class="list-card__view-select" onclick={togglePicker} aria-haspopup="true" aria-expanded={isPickerOpen}>
+                        <span class="slds-truncate">{selectedViewLabel}</span>
+                        <lightning-icon icon-name="utility:down" size="xx-small"></lightning-icon>
+                    </button>
+
+                    <template if:true={isPickerOpen}>
+                        <div class="list-card__dropdown-overlay" onclick={handleOverlayClick}></div>
+                        <div class="slds-dropdown slds-dropdown_left list-card__dropdown" role="menu">
+                            <p class="slds-dropdown__header slds-text-title_caps">Modos de exibição de lista</p>
+                            <ul class="slds-dropdown__list" role="presentation">
+                                <template for:each={views} for:item="v">
+                                    <li key={v.value} role="presentation" class="slds-dropdown__item">
+                                        <a href="javascript:void(0);" role="menuitem" data-value={v.value} onclick={handleViewSelect}>
+                                            <span class="slds-truncate">{v.label}</span>
+                                        </a>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <div class="list-card__toolbar-right">
+                <span class="list-card__total slds-text-body_small">Total {totalCount}</span>
+                <div class="list-card__search">
+                    <lightning-icon icon-name="utility:search" size="x-small"></lightning-icon>
+                    <input
+                        type="text"
+                        class="list-card__search-input"
+                        placeholder="Pesquisar nesta lista..."
+                        value={searchTerm}
+                        oninput={handleSearchInput}
+                    />
+                </div>
+                <button class="list-card__refresh" title="Atualizar" onclick={handleRefresh}>
+                    <lightning-icon icon-name="utility:refresh" size="x-small"></lightning-icon>
+                </button>
+                <button class="list-card__filter" title="Filtrar">
+                    <lightning-icon icon-name="utility:filterList" size="x-small"></lightning-icon>
+                </button>
+            </div>
+        </div>
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Carregando equipamentos" size="small"></lightning-spinner>
+        </template>
+
+        <template if:true={errorMessage}>
+            <div class="slds-text-color_error slds-var-p-around_small" role="alert">
+                {errorMessage}
+            </div>
+        </template>
+
+        <template if:true={showWaitingForAccount}>
+            <div class="slds-text-color_weak slds-var-p-around_small">
+                Selecione uma empresa para ver os equipamentos.
+            </div>
+        </template>
+
+        <template if:true={showEmptyState}>
+            <div class="slds-text-color_weak slds-var-p-around_small">
+                Nenhum equipamento encontrado para esta empresa.
+            </div>
+        </template>
+
+        <template if:true={hasEquipamentos}>
+            <div class="list-card__table-wrap">
+                <table class="list-card__table">
+                    <colgroup>
+                        <col class="list-card__col-rownum" />
+                        <col style={numeroColStyle} />
+                        <col style={descricaoColStyle} />
+                        <col style={contratoColStyle} />
+                        <col style={dataEntregaColStyle} />
+                        <col style={usuarioColStyle} />
+                        <col style={valorLocacaoColStyle} />
+                        <col style={valorGarantiaColStyle} />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="list-card__th-rownum"></th>
+                            <th class={numeroThClass} data-field="numero" onclick={handleSort}>
+                                <span class="list-card__th-inner">
+                                    <span class="list-card__th-label">Número</span>
+                                    <lightning-icon if:true={isSortedByNumero} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                    <lightning-icon if:false={isSortedByNumero} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="numero" onclick={handleColumnMenuToggle}></lightning-icon>
+                                </span>
+                                <span class="list-card__resize-handle" data-field="numero" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                            <template if:true={isColumnMenuOpenNumero}>
+                                <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                    <ul class="slds-dropdown__list" role="presentation">
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" data-field="numero" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                <span class="slds-truncate">Quebrar texto</span>
+                                            </a>
+                                        </li>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" data-field="numero" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                <span class="slds-truncate">Cortar texto</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </template>
+                            </th>
+                            <th class={descricaoThClass} data-field="descricao" onclick={handleSort}>
+                                <span class="list-card__th-inner">
+                                    <span class="list-card__th-label">Descrição</span>
+                                    <lightning-icon if:true={isSortedByDescricao} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                    <lightning-icon if:false={isSortedByDescricao} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="descricao" onclick={handleColumnMenuToggle}></lightning-icon>
+                                </span>
+                                <span class="list-card__resize-handle" data-field="descricao" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                            <template if:true={isColumnMenuOpenDescricao}>
+                                <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                    <ul class="slds-dropdown__list" role="presentation">
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" data-field="descricao" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                <span class="slds-truncate">Quebrar texto</span>
+                                            </a>
+                                        </li>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" data-field="descricao" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                <span class="slds-truncate">Cortar texto</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </template>
+                            </th>
+                            <th class={contratoThClass} data-field="contrato" onclick={handleSort}>
+                                <span class="list-card__th-inner">
+                                    <span class="list-card__th-label">Contrato</span>
+                                    <lightning-icon if:true={isSortedByContrato} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                    <lightning-icon if:false={isSortedByContrato} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="contrato" onclick={handleColumnMenuToggle}></lightning-icon>
+                                </span>
+                                <span class="list-card__resize-handle" data-field="contrato" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                            <template if:true={isColumnMenuOpenContrato}>
+                                <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                    <ul class="slds-dropdown__list" role="presentation">
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" data-field="contrato" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                <span class="slds-truncate">Quebrar texto</span>
+                                            </a>
+                                        </li>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" data-field="contrato" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                <span class="slds-truncate">Cortar texto</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </template>
+                            </th>
+                            <th class={dataEntregaThClass} data-field="dataEntrega" onclick={handleSort}>
+                                <span class="list-card__th-inner">
+                                    <span class="list-card__th-label">Data de Entrega</span>
+                                    <lightning-icon if:true={isSortedByDataEntrega} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                    <lightning-icon if:false={isSortedByDataEntrega} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="dataEntrega" onclick={handleColumnMenuToggle}></lightning-icon>
+                                </span>
+                                <span class="list-card__resize-handle" data-field="dataEntrega" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                            <template if:true={isColumnMenuOpenDataEntrega}>
+                                <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                    <ul class="slds-dropdown__list" role="presentation">
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" data-field="dataEntrega" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                <span class="slds-truncate">Quebrar texto</span>
+                                            </a>
+                                        </li>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" data-field="dataEntrega" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                <span class="slds-truncate">Cortar texto</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </template>
+                            </th>
+                            <th class={usuarioThClass} data-field="usuario" onclick={handleSort}>
+                                <span class="list-card__th-inner">
+                                    <span class="list-card__th-label">Usuário</span>
+                                    <lightning-icon if:true={isSortedByUsuario} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                    <lightning-icon if:false={isSortedByUsuario} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="usuario" onclick={handleColumnMenuToggle}></lightning-icon>
+                                </span>
+                                <span class="list-card__resize-handle" data-field="usuario" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                            <template if:true={isColumnMenuOpenUsuario}>
+                                <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                    <ul class="slds-dropdown__list" role="presentation">
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" data-field="usuario" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                <span class="slds-truncate">Quebrar texto</span>
+                                            </a>
+                                        </li>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" data-field="usuario" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                <span class="slds-truncate">Cortar texto</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </template>
+                            </th>
+                            <th class={valorLocacaoThClass} data-field="valorLocacao" onclick={handleSort}>
+                                <span class="list-card__th-inner">
+                                    <span class="list-card__th-label">Valor de locação</span>
+                                    <lightning-icon if:true={isSortedByValorLocacao} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                    <lightning-icon if:false={isSortedByValorLocacao} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="valorLocacao" onclick={handleColumnMenuToggle}></lightning-icon>
+                                </span>
+                                <span class="list-card__resize-handle" data-field="valorLocacao" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                            <template if:true={isColumnMenuOpenValorLocacao}>
+                                <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                    <ul class="slds-dropdown__list" role="presentation">
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" data-field="valorLocacao" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                <span class="slds-truncate">Quebrar texto</span>
+                                            </a>
+                                        </li>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" data-field="valorLocacao" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                <span class="slds-truncate">Cortar texto</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </template>
+                            </th>
+                            <th class={valorGarantiaThClass} data-field="valorGarantia" onclick={handleSort}>
+                                <span class="list-card__th-inner">
+                                    <span class="list-card__th-label">Custo da Garantia Aluga</span>
+                                    <lightning-icon if:true={isSortedByValorGarantia} icon-name={sortIconName} size="xx-small"></lightning-icon>
+                                    <lightning-icon if:false={isSortedByValorGarantia} icon-name="utility:down" size="xx-small" class="list-card__th-chevron" data-field="valorGarantia" onclick={handleColumnMenuToggle}></lightning-icon>
+                                </span>
+                                <span class="list-card__resize-handle" data-field="valorGarantia" onmousedown={handleResizeStart} onclick={handleResizeHandleClick}></span>
+                            <template if:true={isColumnMenuOpenValorGarantia}>
+                                <div class="list-card__dropdown-overlay" onclick={handleColumnOverlayClick}></div>
+                                <div class="slds-dropdown slds-dropdown_left list-card__column-menu" role="menu">
+                                    <ul class="slds-dropdown__list" role="presentation">
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" data-field="valorGarantia" data-mode="wrap" onclick={handleColumnModeSelect}>
+                                                <span class="slds-truncate">Quebrar texto</span>
+                                            </a>
+                                        </li>
+                                        <li class="slds-dropdown__item" role="presentation">
+                                            <a href="javascript:void(0);" role="menuitem" data-field="valorGarantia" data-mode="clip" onclick={handleColumnModeSelect}>
+                                                <span class="slds-truncate">Cortar texto</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </template>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={displayedEquipamentos} for:item="e">
+                            <tr key={e.id}>
+                                <td class="list-card__td-rownum">{e.rowNumber}</td>
+                                <td class={numeroCellClass}>
+                                    <a href={e.recordUrl} data-record-id={e.id} onclick={handleRecordClick}>{e.numero}</a>
+                                </td>
+                                <td class={descricaoCellClass}>{e.descricao}</td>
+                                <td class={contratoCellClass}>
+                                    <template if:true={e.contratoUrl}>
+                                        <a href={e.contratoUrl} data-record-id={e.contratoId} data-object="Oportunidade_Aprovada__c" onclick={handleRelatedRecordClick}>{e.contrato}</a>
+                                    </template>
+                                    <template if:false={e.contratoUrl}>
+                                        {e.contrato}
+                                    </template>
+                                </td>
+                                <td class={dataEntregaCellClass}>{e.dataEntregaFormatada}</td>
+                                <td class={usuarioCellClass}>
+                                    <template if:true={e.usuarioUrl}>
+                                        <a href={e.usuarioUrl} data-record-id={e.usuarioId} data-object="Contact" onclick={handleRelatedRecordClick}>{e.usuario}</a>
+                                    </template>
+                                    <template if:false={e.usuarioUrl}>
+                                        {e.usuario}
+                                    </template>
+                                </td>
+                                <td class={valorLocacaoCellClass}>{e.valorLocacaoFormatado}</td>
+                                <td class={valorGarantiaCellClass}>{e.valorGarantiaFormatado}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+    </div>
+</template>

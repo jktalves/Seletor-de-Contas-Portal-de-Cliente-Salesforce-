@@ -1,0 +1,16 @@
+:host {
+    display: block;
+    text-align: right;
+    padding: 0.5rem 1rem;
+}
+
+.account-switcher {
+    display: inline-block;
+    width: 320px;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.account-switcher__single {
+    line-height: 1.2;
+}

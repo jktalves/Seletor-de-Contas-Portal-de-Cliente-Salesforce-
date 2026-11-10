@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <description>OK = Funcionando normalmente
+Manuntenção = Foi enviado para manutenção/conserto
+Uso interno = Estão sendo usados por nós mesmos
+Extravios = Não foi encontrado no estoque, precisa verificar
+Vendido,doado,descartado = Já não existe mais
+Reservado = Reservado para um cliente e não deve ser contado como disponível
+Sucata = Só tem a carcaça
+Sub-locação = Equipamento de outra empresa
+Desativado = Número de série desativado e não vai ser mais usado
+Revisão = Veio de manutenção do cliente, precisa conferir
+Pré-cadastro = cadastrando antecipadamente e está pra vir do fornecedor
+A preparar = foi retirado de um cliente e precisa ser preparado
+Funcional=OK, mas com algum detalhe que pode atrapalhar se for alugado
+Assistência Técnica = Manutenção Externa
+Devolução pendente (clientes) = Equipamentos que estão no cliente, mas não necessariamente extraviados</description>
+    <inlineHelpText>Ext=Disponível, mas não encontrado no estoque
+Res=No estoque e reservado para um cliente
+Suc=No estoque mas não será consertado
+Des=Não existe mais
+Rev=Chegou de um Caso de troca, precisa verificar
+Pré=Está para chegar do fornecedor
+Func=OK, mas com algum detalhe que pode atrapalhar se for alugado
+Ass. Tec.=Manutenção Externa</inlineHelpText>
+    <label>Status</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Status_do_Equipamento</valueSetName>
+    </valueSet>
+</CustomField>

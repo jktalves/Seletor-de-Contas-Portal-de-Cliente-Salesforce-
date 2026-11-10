@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conga_Equipamentos_Gatilho__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Parte da solução de exportação de planilha de inventário do portal de clientes.
+Essa caixa de seleção é o gatilho de um record triggered flow que envia uma outbound message para o Conga.</description>
+    <label>Conga - Equipamentos (Gatilho)</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,94 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "1d0237cd-83c6-47a2-b327-5546951cca5a",
+  "label" : "solicitacoes",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "align" : "Left",
+        "applyCardBackground" : false,
+        "autoLaunchFlow" : true,
+        "buttonBackgroundColor" : "",
+        "buttonBorderRadius" : "",
+        "buttonHeight" : "100px",
+        "buttonLabel" : "Novo Pedido",
+        "buttonTextColor" : "",
+        "buttonTextSize" : "",
+        "buttonWidth" : "100px",
+        "closeButtonText" : "Close",
+        "fixedButtonWidthHeight" : false,
+        "fixedModalWidthHeight" : false,
+        "flowInputVariablesString" : "",
+        "flowModalHeader" : "Novo Pedido",
+        "flowName" : "Oportunidade_Nova_Solicita_o",
+        "hideButton" : false,
+        "hideFlowTransitionOverlay" : true,
+        "hideModalCloseButton" : false,
+        "modalHeight" : "600px",
+        "modalWidth" : "800px",
+        "redirectUrlOnFlowCompletion" : "",
+        "refreshPageOnFlowCompletion" : false,
+        "renderFooter" : false
+      },
+      "componentName" : "sf_flowmodal:ccp_launchFlowModal",
+      "id" : "1d058921-2a79-40ac-8348-37bcc12d180a",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "38b404d4-3855-4a80-903b-0f6f6aea5bbd",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "enableInlineEdit" : false,
+        "filterName" : "Novos_Pedidos",
+        "layout" : "FULL",
+        "pageSize" : 25,
+        "scope" : "Oportunidade_Aprovada__c",
+        "showActionBar" : false,
+        "showChartsPanel" : false,
+        "showDisplay" : "grid",
+        "showFilterPanel" : true,
+        "showImageIcon" : true,
+        "showManualRefreshButton" : true,
+        "showObjectName" : true,
+        "showPinnedList" : true,
+        "showSearchBar" : true
+      },
+      "componentName" : "forceCommunity:objectHome",
+      "id" : "74544378-55c0-4459-bec4-c8b8713d165e",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "dd99ac08-425c-49ce-bb6a-a4c067d0b169",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "1cdcf4f7-8d0b-4df0-886a-a641dea374e2",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "Crie solicitações e verifique seus pedidos em andamento.",
+        "title" : "Solicitações"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "28b5c455-664f-4d98-b648-bd2b28274adb",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "1c26c6f8-1c76-42b5-bd21-eefb45e2f01b",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-solicitacoes"
+}

@@ -1,0 +1,65 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "e00ae9a8-fb0c-4f8e-a592-9fd2ba0f2e89",
+  "label" : "Equipamento Detalhe",
+  "regions" : [ {
+    "id" : "43491c61-4da7-4e6e-b643-9077dc678289",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "forceCommunity:recordHeadline",
+      "id" : "22685e9d-ddaf-4f7c-b811-58c4d2f5f03c",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "detailsTabLabel" : "Detalhes",
+        "discussionsTabLabel" : "Feed",
+        "recordId" : "{!recordId}",
+        "relatedTabLabel" : "Relacionado",
+        "tab1Type" : "details",
+        "tab2Type" : "none",
+        "tab3Type" : "related",
+        "tab4Type" : "none",
+        "timelineTabLabel" : "Atividades"
+      },
+      "componentName" : "forceCommunity:recordHomeTabs",
+      "id" : "a86942d3-0d06-4fa6-bbb2-7da63f46ad6d",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "8cca5f0d-742b-439b-9f83-442d3bc2329f",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "dcd3e5d2-2002-4753-85e0-f27596d50473",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "{!Record._Object}: {!Record._Title}"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "c9817b9d-0edf-408f-b04b-f648d10a6ac9",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "06433a3f-1f0e-4f83-9425-7c65f20d1212",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "detail-a0U"
+}

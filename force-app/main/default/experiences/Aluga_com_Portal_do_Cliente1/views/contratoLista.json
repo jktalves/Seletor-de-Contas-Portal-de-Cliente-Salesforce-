@@ -1,0 +1,64 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "b37fce0b-c6ae-4b40-af9b-706abd7090c6",
+  "label" : "Contrato Lista",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "align" : "Left",
+        "applyCardBackground" : false,
+        "autoLaunchFlow" : false,
+        "buttonBackgroundColor" : "",
+        "buttonBorderRadius" : "",
+        "buttonHeight" : "100px",
+        "buttonLabel" : "Novo Pedido",
+        "buttonTextColor" : "",
+        "buttonTextSize" : "",
+        "buttonWidth" : "100px",
+        "closeButtonText" : "Close",
+        "fixedButtonWidthHeight" : false,
+        "fixedModalWidthHeight" : false,
+        "flowInputVariablesString" : "",
+        "flowModalHeader" : "Novo Pedido",
+        "flowName" : "Oportunidade_Nova_Solicita_o",
+        "hideButton" : false,
+        "hideFlowTransitionOverlay" : true,
+        "hideModalCloseButton" : false,
+        "modalHeight" : "600px",
+        "modalWidth" : "800px",
+        "redirectUrlOnFlowCompletion" : "",
+        "refreshPageOnFlowCompletion" : false,
+        "renderFooter" : false
+      },
+      "componentName" : "sf_flowmodal:ccp_launchFlowModal",
+      "id" : "78221800-6b1e-4463-8e0e-3549c539db43",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "470e55cf-9e26-4e04-b453-b50f414fd577",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "c:contratoLista",
+      "id" : "cc001122-aaaa-bbbb-cccc-ddddeeee0003",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "470e55cf-9e26-4e04-b453-000000000003",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "0af3174e-dd97-48b4-b58d-fa56b4b0c289",
+    "regionName" : "footer",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "list-a0V"
+}

@@ -1,0 +1,39 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "c65b570d-984e-43dd-9bec-8bfde40e646b",
+  "label" : "Equipamento Lista relacionada",
+  "regions" : [ {
+    "id" : "965b09b5-9464-4a7b-8815-5cc805759161",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customTitle" : "",
+        "parentRecordId" : "{!recordId}",
+        "relatedListName" : "{!relationshipApiName}",
+        "showBreadCrumbs" : true,
+        "showCustomTitle" : false,
+        "showManualRefreshButton" : true,
+        "showRowNumbers" : true
+      },
+      "componentName" : "forceCommunity:relatedList",
+      "id" : "7fcaa8c6-bf34-4097-9b6d-3532b37a8a9b",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "053b082d-3b35-4f7b-9094-15cecb0401e3",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "9c7be7ca-3309-456c-afd3-f6061eb66430",
+    "regionName" : "footer",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "relatedlist-a0U"
+}

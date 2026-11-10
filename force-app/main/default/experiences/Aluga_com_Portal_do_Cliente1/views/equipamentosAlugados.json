@@ -1,0 +1,71 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "62b451e9-8588-4744-bf0f-2a6a1572f330",
+  "label" : "Equipamentos Alugados",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "align" : "Left",
+        "applyCardBackground" : false,
+        "autoLaunchFlow" : false,
+        "buttonBackgroundColor" : "",
+        "buttonBorderRadius" : "",
+        "buttonHeight" : "100px",
+        "buttonLabel" : "Exportar em Excel",
+        "buttonTextColor" : "",
+        "buttonTextSize" : "",
+        "buttonWidth" : "100px",
+        "closeButtonText" : "Fechar",
+        "fixedButtonWidthHeight" : false,
+        "fixedModalWidthHeight" : false,
+        "flowInputVariablesString" : "",
+        "flowModalHeader" : "",
+        "flowName" : "Conta_Equipamentos_Alugados_Tela",
+        "hideButton" : false,
+        "hideFlowTransitionOverlay" : true,
+        "hideModalCloseButton" : false,
+        "modalHeight" : "600px",
+        "modalWidth" : "800px",
+        "redirectUrlOnFlowCompletion" : "",
+        "refreshPageOnFlowCompletion" : false,
+        "renderFooter" : false
+      },
+      "componentName" : "sf_flowmodal:ccp_launchFlowModal",
+      "id" : "4a645ba3-7fc0-4dde-add9-84e671a2b8cf",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "90d99f7b-9067-4714-8104-7b76b52353d6",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "id" : "123f6b2d-ce5d-44d6-a1df-a02765ac49a4",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "b75a5bfd-99a1-4895-98d2-7b719fbcff11",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Equipamentos Alugados"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "b7526821-32b3-4a6a-84df-700cd2cf7080",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "26b2dbc8-121b-4a2d-9b35-72c205db0fda",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-equipamentos-alugados"
+}

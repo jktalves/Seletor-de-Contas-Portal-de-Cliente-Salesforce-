@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "3c3dd179-0bdd-43ef-b727-6052731f2642",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "Contrato_Lista_relacionada__c",
+  "id" : "3636deae-250c-4e86-9739-b07f4adc2c47",
+  "label" : "Contrato Lista relacionada",
+  "objectApiName" : "Oportunidade_Aprovada__c",
+  "routeType" : "relatedlist-a0V",
+  "type" : "route",
+  "urlPrefix" : "contrato"
+}

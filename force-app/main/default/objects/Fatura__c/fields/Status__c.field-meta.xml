@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <description>Rascunho - Status padrão. Todas as faturas começam aqui.
+Aprovado - Após o usuário editar o registro, ele manualmente aprova a fatura.
+Cancelado - Para indicar que a cobrança foi anulada, o usuário manualmente altera o status para cancelado.
+Parcelado - Para indicar que a cobrança foi parcelada em várias cobranças menores, o usuário manualmente altera o status para parcelado.
+Recebido - Atualizado automaticamente pelo sistema.
+Atrasado - Atualizado automaticamente pelo sistema.</description>
+    <label>Status</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Rascunho</fullName>
+                <default>true</default>
+                <label>Rascunho</label>
+            </value>
+            <value>
+                <fullName>Aprovado</fullName>
+                <default>false</default>
+                <label>Aprovado</label>
+            </value>
+            <value>
+                <fullName>Cancelado</fullName>
+                <default>false</default>
+                <label>Cancelado</label>
+            </value>
+            <value>
+                <fullName>Recebido</fullName>
+                <default>false</default>
+                <label>Recebido</label>
+            </value>
+            <value>
+                <fullName>Atrasado</fullName>
+                <default>false</default>
+                <label>Atrasado</label>
+            </value>
+            <value>
+                <fullName>Parcelada</fullName>
+                <default>false</default>
+                <label>Parcelada</label>
+            </value>
+            <value>
+                <fullName>Em negociação</fullName>
+                <default>false</default>
+                <label>Em negociação</label>
+            </value>
+            <value>
+                <fullName>Protestado l Atrasado</fullName>
+                <default>false</default>
+                <label>Protestado l Atrasado</label>
+            </value>
+            <value>
+                <fullName>Protestado | Recebido</fullName>
+                <default>false</default>
+                <label>Protestado | Recebido</label>
+            </value>
+            <value>
+                <fullName>Protestado | Parcelado</fullName>
+                <default>false</default>
+                <label>Protestado | Parcelado</label>
+            </value>
+            <value>
+                <fullName>Protestado e Parcelado (Atrasado)</fullName>
+                <default>false</default>
+                <label>Protestado e Parcelado (Atrasado)</label>
+            </value>
+            <value>
+                <fullName>Protestado e Parcelado (Quitado)</fullName>
+                <default>false</default>
+                <label>Protestado e Parcelado (Quitado)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

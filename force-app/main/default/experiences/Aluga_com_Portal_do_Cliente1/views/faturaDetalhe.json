@@ -1,0 +1,70 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "1d65a319-bcdf-45b9-a509-9878393aad6d",
+  "label" : "Fatura Detalhe",
+  "regions" : [ {
+    "id" : "49101608-dff7-4074-8929-cd8a9cd58159",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "forceCommunity:recordHeadline",
+      "id" : "545ba029-3e91-41a5-a670-d319c9274680",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "detailsTabLabel" : "",
+        "discussionsTabLabel" : "",
+        "recordId" : "{!recordId}",
+        "relatedTabLabel" : "",
+        "showLegacyActivityComposer" : false,
+        "tab1Type" : "details",
+        "tab2Type" : "none",
+        "tab3Type" : "related",
+        "tab4Type" : "none",
+        "timelineTabLabel" : ""
+      },
+      "componentName" : "forceCommunity:recordHomeTabs",
+      "id" : "4c9a3e25-d717-455a-8eb3-95246c33e907",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "b7e50816-0d20-42c8-8cd2-63c08c76a4a3",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "fab03f1e-cd26-4939-8b79-2ae73bac1899",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "{!Record._Object}: {!Record._Title}"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "d120740d-5692-4a3a-bc1b-02477855ab57",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "7458d4a7-10d0-436e-99ff-2647066091e1",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  }, {
+    "id" : "fd89510f-ea08-4f9e-b89d-73009668cc62",
+    "regionName" : "sidebar",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "detail-a00"
+}

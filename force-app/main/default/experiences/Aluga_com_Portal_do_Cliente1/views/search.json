@@ -1,0 +1,63 @@
+{
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "b52ce1c3-9d30-4913-a2e7-adb787eecf16",
+  "label" : "Search",
+  "regions" : [ {
+    "id" : "09f5c5b7-3f6a-40a9-94a6-954ac9ecff2d",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "scopes" : [ {
+          "isPublic" : true,
+          "name" : "Equipamento__c"
+        }, {
+          "isPublic" : false,
+          "name" : "Case"
+        }, {
+          "isPublic" : true,
+          "name" : "Fatura__c"
+        }, {
+          "isPublic" : true,
+          "name" : "Oportunidade_Aprovada__c"
+        }, {
+          "isPublic" : true,
+          "name" : "Endere_o__c"
+        }, {
+          "isPublic" : true,
+          "name" : "Contact"
+        }, {
+          "isPublic" : true,
+          "name" : "Account"
+        }, {
+          "isPublic" : true,
+          "name" : "Atualiza_o_de_Chamado__c"
+        }, {
+          "isPublic" : true,
+          "name" : "ContentDocument"
+        } ],
+        "searchResultFiltering" : true,
+        "searchTerm" : "{!term}",
+        "showTopResults" : true
+      },
+      "componentName" : "forceCommunity:search",
+      "id" : "7c1dffd4-9355-451d-96ff-454d8e88d6e2",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "090f6ef6-ca77-4de9-b5f2-8b6351201c81",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "7839e439-6be2-4248-b401-811699c94114",
+    "regionName" : "footer",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "global-search"
+}

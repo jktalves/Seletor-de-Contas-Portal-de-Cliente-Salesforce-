@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <outboundMessages>
+        <fullName>Conga_Trigger_Equipamentos_Contato</fullName>
+        <apiVersion>66.0</apiVersion>
+        <description>Parte da solução de exportação de planilha de inventário do portal de clientes.</description>
+        <endpointUrl>https://workflow.congamerge.com/OBMListener.ashx</endpointUrl>
+        <fields>Conga_Equipamentos__c</fields>
+        <fields>Id</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>processos-automaticos@aluga.com</integrationUser>
+        <name>Conga Trigger - Equipamentos (Contato)</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+</Workflow>

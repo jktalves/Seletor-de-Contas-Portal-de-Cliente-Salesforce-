@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "2f623cd4-ca33-47e4-b667-7baeb33e5623",
+  "appPageId" : "f8d94213-151a-48ac-bcc5-076339d64310",
+  "configurationTags" : [ ],
+  "devName" : "suporte__c",
+  "id" : "33559a0f-2850-484d-94b2-54224b57b3a9",
+  "label" : "Suporte Técnico",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-suporte-tecnico",
+  "type" : "route",
+  "urlPrefix" : "suporte-tecnico"
+}
