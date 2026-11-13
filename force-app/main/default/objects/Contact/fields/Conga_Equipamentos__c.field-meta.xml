@@ -6,8 +6,8 @@
     <formula>&quot;&amp;id=&quot; + Id + 
 &quot;&amp;templateid=a08HY000004F8cc&quot; + 
 &quot;&amp;emailfromid=0D2310000008Qhg&quot; + 
-&quot;&amp;queryid=a07HY000000W1iL?pv0=&quot; + Id + 
-&quot;&amp;emailtoid=&quot; + Account.Destinat_rio__c + 
+&quot;&amp;queryid=a07HY000000W1iL?pv0=&quot; + CASESAFEID(IF(ISBLANK(Conta_da_Exporta_o_Conga__c), AccountId, Conta_da_Exporta_o_Conga__c)) +
+&quot;&amp;emailtoid=&quot; + Id + 
 &quot;&amp;emailtemplateid=00XHY000000M1Bq&quot; + 
 &quot;&amp;emailrelatedtoid=&quot; + Id + 
 &quot;&amp;qmode=SendEmail&quot;</formula>

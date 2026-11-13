@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conga_Chamados__c</fullName>
+    <description>##Conga created button:00bN500000E4h4j</description>
+    <externalId>false</externalId>
+    <formula>&quot;&amp;id=&quot; + Account.Id +
+&quot;&amp;templateid=a08N500000yqHNRIA2&quot; + 
+&quot;&amp;queryid=a07N500001X1R68IAF?pv0=&quot; + CASESAFEID(IF(ISBLANK(Conta_da_Exporta_o_Conga__c), AccountId, Conta_da_Exporta_o_Conga__c)) + &quot;,a07N500001XY7VkIAL?pv0=&quot; + CASESAFEID(IF(ISBLANK(Conta_da_Exporta_o_Conga__c), AccountId, Conta_da_Exporta_o_Conga__c)) + &quot;,a07N500001XYrxsIAD?pv0=&quot; + CASESAFEID(IF(ISBLANK(Conta_da_Exporta_o_Conga__c), AccountId, Conta_da_Exporta_o_Conga__c)) + &quot;,a07N500001XYsP9IAL?pv0=&quot; + CASESAFEID(IF(ISBLANK(Conta_da_Exporta_o_Conga__c), AccountId, Conta_da_Exporta_o_Conga__c)) + &quot;,a07N500001XYYM2IAP?pv0=&quot; + CASESAFEID(IF(ISBLANK(Conta_da_Exporta_o_Conga__c), AccountId, Conta_da_Exporta_o_Conga__c)) +
+&quot;&amp;emailtoid=&quot; +  Id + 
+&quot;&amp;emailtemplateid=00XN500000WrI4u&quot; + 
+&quot;&amp;emailrelatedtoid=00XHY000000M1Bq&quot; +
+&quot;&amp;qmode=SendEmail&quot;</formula>
+    <label>Conga - Chamados</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

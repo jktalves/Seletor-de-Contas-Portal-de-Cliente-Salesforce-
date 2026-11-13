@@ -34,10 +34,6 @@ export default class AccountSwitcher extends LightningElement {
         return this.accounts.length > 0;
     }
 
-    get hasSingleAccount() {
-        return this.accounts.length === 1;
-    }
-
     get showDropdown() {
         return this.accounts.length > 1;
     }

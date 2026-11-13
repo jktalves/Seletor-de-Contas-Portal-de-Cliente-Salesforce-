@@ -18,20 +18,6 @@
                     </div>
                 </template>
 
-                <template if:true={hasSingleAccount}>
-                    <div class="account-switcher__single">
-                        <p class="slds-text-title slds-text-color_weak">Empresa atual</p>
-                        <p class="slds-text-heading_small">
-                            {selectedAccount.name}
-                            <template if:true={selectedAccount.cnpj}>
-                                <span class="slds-text-body_small slds-text-color_weak">
-                                    &nbsp;— CNPJ {selectedAccount.cnpj}
-                                </span>
-                            </template>
-                        </p>
-                    </div>
-                </template>
-
                 <template if:true={showDropdown}>
                     <lightning-combobox
                         name="accountSwitcher"

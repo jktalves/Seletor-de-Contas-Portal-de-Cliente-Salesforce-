@@ -3,8 +3,8 @@
     <actionCalls>
         <name>navigateToRecord</name>
         <label>navigateToRecord</label>
-        <locationX>446</locationX>
-        <locationY>1706</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <actionName>c:navigateToRecord</actionName>
         <actionType>component</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -33,8 +33,8 @@
     <actionCalls>
         <name>Notifica_o_de_Suporte</name>
         <label>Notificação de Suporte</label>
-        <locationX>446</locationX>
-        <locationY>1598</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <actionName>emailSimple</actionName>
         <actionType>emailSimple</actionType>
         <connector>
@@ -71,16 +71,19 @@
                 <elementReference>Email_Body</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+        </inputParameters>
         <nameSegment>emailSimple</nameSegment>
         <offset>0</offset>
     </actionCalls>
-    <apiVersion>62.0</apiVersion>
+    <apiVersion>67.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
-        <name>Campos_do_Caso</name>
-        <label>Campos do Caso</label>
-        <locationX>446</locationX>
-        <locationY>1166</locationY>
+        <name>Campos_do_Chamado</name>
+        <label>Campos do Chamado</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignmentItems>
             <assignToReference>Caso.AccountId</assignToReference>
             <operator>Assign</operator>
@@ -92,14 +95,14 @@
             <assignToReference>Caso.ContactId</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Contato.Id</elementReference>
+                <elementReference>contactid</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>Caso.Description</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Descricao_Formula</elementReference>
+                <elementReference>Description</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -113,14 +116,14 @@
             <assignToReference>Caso.Subject</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Assunto</elementReference>
+                <elementReference>Subject</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>Caso.Usu_rio__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>contactid</elementReference>
+                <elementReference>Equipamento_Get.Contato_Usu_rio__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -148,48 +151,55 @@
             <assignToReference>Caso.Processo__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Caso - Criação de Registro no Portal</stringValue>
+                <stringValue>Chamado [TEL] - Formulário do portal de clientes</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Caso.Descri_o_Estoque__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Equipamentos_Estoque_Formula</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Criar_Caso</targetReference>
+            <targetReference>Criar_Chamado</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Campos_do_Contato</name>
         <label>Campos do Contato</label>
-        <locationX>50</locationX>
-        <locationY>458</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>ContactVar.FirstName</assignToReference>
+            <assignToReference>Contact.FirstName</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Nome</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>ContactVar.LastName</assignToReference>
+            <assignToReference>Contact.LastName</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Sobrenome</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>ContactVar.AccountId</assignToReference>
+            <assignToReference>Contact.AccountId</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Contato.AccountId</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>ContactVar.Phone</assignToReference>
+            <assignToReference>Contact.Phone</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Telefone.value</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>ContactVar.Email</assignToReference>
+            <assignToReference>Contact.Email</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Email.value</elementReference>
@@ -200,61 +210,21 @@
         </connector>
     </assignments>
     <assignments>
-        <name>id_do_contato</name>
-        <label>id do contato</label>
-        <locationX>50</locationX>
-        <locationY>674</locationY>
+        <name>Definir_id_do_contato</name>
+        <label>Definir id do contato</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignmentItems>
             <assignToReference>contactid</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>ContactVar.Id</elementReference>
+                <elementReference>Contact.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <isGoTo>true</isGoTo>
-            <targetReference>Navega_o</targetReference>
+            <targetReference>Usu_rio_de_Organiza_o_de_Chamados</targetReference>
         </connector>
     </assignments>
-    <assignments>
-        <description>Identifica os Equipamentos inseridos, e realiza a contagem.</description>
-        <name>Identificacoes_dos_Equipamentos</name>
-        <label>Identificações dos Equipamentos</label>
-        <locationX>666</locationX>
-        <locationY>782</locationY>
-        <assignmentItems>
-            <assignToReference>Identifica_Equipamento</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>Equipamentos_Relacionados</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Contagem</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <numberValue>1.0</numberValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>EquipamentosIds</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>Equipamentos_Loop.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Equipamentos_Loop</targetReference>
-        </connector>
-    </assignments>
-    <choices>
-        <name>Devolucao</name>
-        <choiceText>Devolução</choiceText>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Devolução</stringValue>
-        </value>
-    </choices>
     <choices>
         <name>Duvida</name>
         <choiceText>Dúvidas</choiceText>
@@ -264,47 +234,88 @@
         </value>
     </choices>
     <choices>
-        <name>Problemas_Gerais</name>
-        <choiceText>Problemas Gerais</choiceText>
+        <name>Falha_na_imagem_ou_oscila_o_no_monitor_tela</name>
+        <choiceText>Falha na imagem ou oscilação no monitor/tela</choiceText>
         <dataType>String</dataType>
         <value>
-            <stringValue>Problemas Gerais</stringValue>
+            <stringValue>Falha na imagem ou oscilação no monitor/tela</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Falha_no_funcionamento_da_camera</name>
+        <choiceText>Falha no funcionamento da câmera</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Falha no funcionamento da câmera</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Lentidao</name>
+        <choiceText>Lentidão</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Lentidão</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Outros</name>
+        <choiceText>Outros</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Outros</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Problema_de_inicializacao_Nao_liga</name>
+        <choiceText>Problema de inicialização / Não liga</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Problema de inicialização / Não liga</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Problema_na_reprodu_o_de_audio</name>
+        <choiceText>Problema na reprodução de áudio</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Problema na reprodução de áudio</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Software_Office_antivirus_etc</name>
+        <choiceText>Software (Office, antivírus, etc)</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Software (Office, antivírus, etc)</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Solicitacao_de_Suporte</name>
+        <choiceText>Solicitação de Suporte</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Solicitação de Suporte</stringValue>
         </value>
     </choices>
     <choices>
         <name>Solicitacao_de_Upgrade</name>
-        <choiceText>Solicitação de Upgrade ou Locação</choiceText>
+        <choiceText>Solicitação de Upgrade</choiceText>
         <dataType>String</dataType>
         <value>
-            <stringValue>Solicitação de Upgrade ou Locação</stringValue>
+            <stringValue>Solicitação de Upgrade</stringValue>
         </value>
     </choices>
-    <choices>
-        <name>Troca</name>
-        <choiceText>Troca</choiceText>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Troca</stringValue>
-        </value>
-    </choices>
-    <constants>
-        <name>Tabata</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>a0tU6000005Mo08IAC</stringValue>
-        </value>
-    </constants>
     <decisions>
-        <name>Navega_o</name>
-        <label>Navegação</label>
-        <locationX>248</locationX>
-        <locationY>350</locationY>
+        <name>Verificar_se_Cadastrar_um_novo_contato_foi_selecionado</name>
+        <label>Verificar se &quot;Cadastrar um novo contato&quot; foi selecionado</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>Verificar_se_possui_Equipamento</targetReference>
+            <targetReference>Usu_rio_de_Organiza_o_de_Chamados</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Prosseguir</defaultConnectorLabel>
+        <defaultConnectorLabel>Pular</defaultConnectorLabel>
         <rules>
-            <name>Criar_Contato</name>
+            <name>Prosseguir_Contato</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Cadastrar_um_novo_contato</leftValueReference>
@@ -313,43 +324,36 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <connector>
+                <targetReference>Campos_do_Contato</targetReference>
+            </connector>
+            <label>Prosseguir</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Verifica se foi inserido algum Equipamento pelo usuário.</description>
+        <name>Verificar_se_Equipamento_foi_Preenchido</name>
+        <label>Verificar se Equipamento foi Preenchido</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Dados</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Pular</defaultConnectorLabel>
+        <rules>
+            <name>Prosseguir_Equipamento</name>
+            <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Criar_Contato_Registro</leftValueReference>
-                <operator>WasVisited</operator>
+                <leftValueReference>Prosseguir_sem_identificar_o_equipamento</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Campos_do_Contato</targetReference>
+                <targetReference>Equipamento_Get</targetReference>
             </connector>
-            <label>Criar Contato</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <description>Verifica se foi inserido algum Equipamento pelo usuário.</description>
-        <name>Verificar_se_possui_Equipamento</name>
-        <label>Verificar se possui Equipamento</label>
-        <locationX>446</locationX>
-        <locationY>458</locationY>
-        <defaultConnector>
-            <targetReference>Equipamentos_inseridos</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Possui Equipamento</defaultConnectorLabel>
-        <rules>
-            <name>Nao_possui_Equipamento</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Esse_chamado_n_o_est_relacionado_a_um_equipamento</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Usu_rio_de_Organiza_o_de_Chamados</targetReference>
-            </connector>
-            <label>Não possui Equipamento</label>
+            <label>Prosseguir</label>
         </rules>
     </decisions>
     <description>Formulário para criação de Chamado do Portal de Clientes.</description>
@@ -363,6 +367,7 @@
     </dynamicChoiceSets>
     <environments>Default</environments>
     <formulas>
+        <description>Essa fórmula faz com que o chamado seja criado na conta ativa do seletor, voltando para a conta principal do contato caso ele nunca tenha trocado de conta.</description>
         <name>Conta_do_Caso_Formula</name>
         <dataType>String</dataType>
         <expression>IF(ISBLANK({!Contato.Conta_Ativa__c}), {!Contato.AccountId}, {!Contato.Conta_Ativa__c})</expression>
@@ -374,33 +379,31 @@ Descrição preenchida pelo usuário.
 Equipamentos inseridos pelo usuário, se houver.</description>
         <name>Descricao_Formula</name>
         <dataType>String</dataType>
-        <expression>&quot;Endereço: &quot; &amp; {!Endere_o_onde_o_equipamento_est_localizado} &amp; BR() &amp;
-&quot;Descrição: &quot; &amp; {!Descri_o} &amp; BR() &amp; BR() &amp;
- IF(NOT(ISBLANK({!Identifica_Equipamento})), &quot;Equipamentos relacionados: &quot; &amp; BR() &amp; {!Identifica_Equipamento}, &quot;&quot;)</expression>
+        <expression>IF(NOT({!Prosseguir_sem_identificar_o_equipamento}), &quot;Equipamentos: &quot; &amp; BR() &amp; {!Equipamento_Get.Name} &amp; &quot; | &quot; &amp; {!Equipamento_Get.Produto_de_oportunidade__r.Description}, &quot;&quot;)</expression>
     </formulas>
     <formulas>
-        <name>Equipamentos_Relacionados</name>
+        <name>Equipamento_Display_Formula</name>
         <dataType>String</dataType>
-        <expression>TEXT({!Contagem}) &amp; &quot;. &quot; &amp; {!Equipamentos_Loop.Name} &amp; BR()</expression>
+        <expression>{!Equipamento_Get.Name} &amp; &quot; - &quot; &amp; {!Equipamento_Get.Produto_de_oportunidade__r.Description} &amp; &quot; &quot; &amp; {!Equipamento_Get.Contato_Usu_rio__r.Name} &amp; BR()</expression>
+    </formulas>
+    <formulas>
+        <name>Equipamentos_Estoque_Formula</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT({!Prosseguir_sem_identificar_o_equipamento}), &quot;Equipamentos: &quot; &amp; BR() &amp; {!Equipamento_Get.Name} &amp; &quot; | &quot; &amp; {!Equipamento_Get.Descri_o_modelo_e_processador__c} , &quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>Equipamentos_Formula</name>
+        <dataType>String</dataType>
+        <expression>{!Equipamento_Get.Name} &amp; &quot; - &quot; &amp;  {!Equipamento_Get.Descri_o_modelo_e_processador__c} &amp; BR()</expression>
+    </formulas>
+    <formulas>
+        <name>Subject</name>
+        <dataType>String</dataType>
+        <expression>IF({!Assunto} = {!Solicitacao_de_Suporte}, {!Assunto} &amp; &quot; - &quot; &amp; {!Problema_apresentado}, {!Assunto})</expression>
     </formulas>
     <interviewLabel>Caso - Criação de Registro no Portal {!$Flow.CurrentDateTime}</interviewLabel>
     <isAdditionalPermissionRequiredToRun>true</isAdditionalPermissionRequiredToRun>
     <label>Chamado [TEL] - Formulário do portal de clientes</label>
-    <loops>
-        <description>Loop dos Equipamentos inseridos, para inserir o Nome de cada um, na variável que será utilizada na Descrição de informação do Chamado.</description>
-        <name>Equipamentos_Loop</name>
-        <label>Equipamentos Loop</label>
-        <locationX>578</locationX>
-        <locationY>674</locationY>
-        <collectionReference>Equipamentos_inseridos</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Identificacoes_dos_Equipamentos</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Usu_rio_de_Organiza_o_de_Chamados</targetReference>
-        </noMoreValuesConnector>
-    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -421,10 +424,10 @@ Equipamentos inseridos pelo usuário, se houver.</description>
     </processMetadataValues>
     <processType>Flow</processType>
     <recordCreates>
-        <name>Criar_Caso</name>
-        <label>Criar Caso</label>
-        <locationX>446</locationX>
-        <locationY>1274</locationY>
+        <name>Criar_Chamado</name>
+        <label>Criar Chamado</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>Atualizar_Equipamentos</targetReference>
         </connector>
@@ -433,18 +436,18 @@ Equipamentos inseridos pelo usuário, se houver.</description>
     <recordCreates>
         <name>Criar_Contato_Registro</name>
         <label>Criar Contato</label>
-        <locationX>50</locationX>
-        <locationY>566</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
-            <targetReference>id_do_contato</targetReference>
+            <targetReference>Definir_id_do_contato</targetReference>
         </connector>
-        <inputReference>ContactVar</inputReference>
+        <inputReference>Contact</inputReference>
     </recordCreates>
     <recordCreates>
         <name>Criar_Fluxo_de_Trabalho</name>
         <label>Criar Fluxo de Trabalho</label>
-        <locationX>446</locationX>
-        <locationY>1490</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>Notifica_o_de_Suporte</targetReference>
         </connector>
@@ -484,11 +487,11 @@ Equipamentos inseridos pelo usuário, se houver.</description>
     <recordLookups>
         <name>Contato</name>
         <label>Contato</label>
-        <locationX>248</locationX>
-        <locationY>134</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Dados</targetReference>
+            <targetReference>Identificar_o_Equipamento</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -504,34 +507,40 @@ Equipamentos inseridos pelo usuário, se houver.</description>
     </recordLookups>
     <recordLookups>
         <description>Coleta a informação dos Equipamentos inseridos.</description>
-        <name>Equipamentos_inseridos</name>
-        <label>Equipamentos inseridos</label>
-        <locationX>578</locationX>
-        <locationY>566</locationY>
+        <name>Equipamento_Get</name>
+        <label>Equipamento</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Equipamentos_Loop</targetReference>
+            <targetReference>Dados</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
-            <operator>In</operator>
+            <operator>EqualTo</operator>
             <value>
-                <elementReference>Equipamento.recordIds</elementReference>
+                <elementReference>Equipamento_Lookup.recordId</elementReference>
             </value>
         </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Equipamento__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Descri_o_modelo_e_processador__c</queriedFields>
+        <queriedFields>Contato_Usu_rio__c</queriedFields>
+        <queriedFields>Produto_de_oportunidade__c</queriedFields>
+        <queriedFields>Caso__c</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <name>Usu_rio_de_Organiza_o_de_Chamados</name>
         <label>Usuário de Organização de Chamados</label>
-        <locationX>446</locationX>
-        <locationY>1058</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Campos_do_Caso</targetReference>
+            <targetReference>Campos_do_Chamado</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -550,22 +559,24 @@ Equipamentos inseridos pelo usuário, se houver.</description>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>User</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Funcion_rio__c</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
         <name>Atualizar_Equipamentos</name>
         <label>Atualizar Equipamentos</label>
-        <locationX>446</locationX>
-        <locationY>1382</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>Criar_Fluxo_de_Trabalho</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
-            <operator>In</operator>
+            <operator>EqualTo</operator>
             <value>
-                <elementReference>EquipamentosIds</elementReference>
+                <elementReference>Equipamento_Lookup.recordId</elementReference>
             </value>
         </filters>
         <inputAssignments>
@@ -580,27 +591,18 @@ Equipamentos inseridos pelo usuário, se houver.</description>
     <screens>
         <name>Dados</name>
         <label>Dados</label>
-        <locationX>248</locationX>
-        <locationY>242</locationY>
-        <allowBack>false</allowBack>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Navega_o</targetReference>
+            <targetReference>Verificar_se_Cadastrar_um_novo_contato_foi_selecionado</targetReference>
         </connector>
         <fields>
-            <name>Assunto</name>
-            <choiceReferences>Problemas_Gerais</choiceReferences>
-            <choiceReferences>Troca</choiceReferences>
-            <choiceReferences>Solicitacao_de_Upgrade</choiceReferences>
-            <choiceReferences>Devolucao</choiceReferences>
-            <choiceReferences>Duvida</choiceReferences>
-            <dataType>String</dataType>
-            <defaultSelectedChoiceReference>Problemas_Gerais</defaultSelectedChoiceReference>
-            <fieldText>Assunto</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>false</isRequired>
+            <name>Equipamentos_Display</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;Equipamento relacionado:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Número: {!Equipamento_Get.Name}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Descrição: {!Equipamento_Get.Produto_de_oportunidade__r.Description}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
             <styleProperties>
                 <verticalAlignment>
                     <stringValue>top</stringValue>
@@ -609,6 +611,68 @@ Equipamentos inseridos pelo usuário, se houver.</description>
                     <stringValue>12</stringValue>
                 </width>
             </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Prosseguir_sem_identificar_o_equipamento</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Assunto</name>
+            <choiceReferences>Solicitacao_de_Suporte</choiceReferences>
+            <choiceReferences>Solicitacao_de_Upgrade</choiceReferences>
+            <choiceReferences>Duvida</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Assunto</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Problema_apresentado</name>
+            <choiceReferences>Problema_de_inicializacao_Nao_liga</choiceReferences>
+            <choiceReferences>Software_Office_antivirus_etc</choiceReferences>
+            <choiceReferences>Falha_no_funcionamento_da_camera</choiceReferences>
+            <choiceReferences>Problema_na_reprodu_o_de_audio</choiceReferences>
+            <choiceReferences>Lentidao</choiceReferences>
+            <choiceReferences>Falha_na_imagem_ou_oscila_o_no_monitor_tela</choiceReferences>
+            <choiceReferences>Outros</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Problema apresentado</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Assunto</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <elementReference>Solicitacao_de_Suporte</elementReference>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>Contact_Lookup</name>
@@ -675,7 +739,7 @@ Equipamentos inseridos pelo usuário, se houver.</description>
             <defaultValue>
                 <booleanValue>false</booleanValue>
             </defaultValue>
-            <fieldText>Cadastrar um novo contato</fieldText>
+            <fieldText>Cadastrar um contato novo</fieldText>
             <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
@@ -819,8 +883,51 @@ Equipamentos inseridos pelo usuário, se houver.</description>
             </visibilityRule>
         </fields>
         <fields>
+            <name>Usuario_Lookup</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>Usu_rio__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Usuário do equipamento</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>Case</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>Equipamento_Get.Contato_Usu_rio__c</elementReference>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
             <name>Endere_o_onde_o_equipamento_est_localizado</name>
             <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>Equipamento_Get.Caso__r.Endere_o__r.Name</elementReference>
+            </defaultValue>
             <fieldText>Endereço onde o equipamento está localizado</fieldText>
             <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -869,8 +976,22 @@ Equipamentos inseridos pelo usuário, se houver.</description>
                 </width>
             </styleProperties>
         </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Identificar_o_Equipamento</name>
+        <label>Identificar o Equipamento</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Verificar_se_Equipamento_foi_Preenchido</targetReference>
+        </connector>
         <fields>
-            <name>Equipamento</name>
+            <name>Equipamento_Lookup</name>
             <extensionName>flowruntime:lookup</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
@@ -880,39 +1001,21 @@ Equipamentos inseridos pelo usuário, se houver.</description>
                 </value>
             </inputParameters>
             <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Equipamento</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
                 <name>objectApiName</name>
                 <value>
                     <stringValue>Screen_Flow_Lookup__c</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
-                <name>label</name>
-                <value>
-                    <stringValue>Equipamentos relacionados</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
                 <name>required</name>
                 <value>
                     <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>maxValues</name>
-                <value>
-                    <numberValue>20.0</numberValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>recordIds</name>
-                <value>
-                    <elementReference>EquipamentosIds</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>recordId</name>
-                <value>
-                    <elementReference>recordId</elementReference>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -929,7 +1032,7 @@ Equipamentos inseridos pelo usuário, se houver.</description>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
-                    <leftValueReference>Esse_chamado_n_o_est_relacionado_a_um_equipamento</leftValueReference>
+                    <leftValueReference>Prosseguir_sem_identificar_o_equipamento</leftValueReference>
                     <operator>EqualTo</operator>
                     <rightValue>
                         <booleanValue>false</booleanValue>
@@ -938,9 +1041,9 @@ Equipamentos inseridos pelo usuário, se houver.</description>
             </visibilityRule>
         </fields>
         <fields>
-            <name>Esse_chamado_n_o_est_relacionado_a_um_equipamento</name>
+            <name>Prosseguir_sem_identificar_o_equipamento</name>
             <dataType>Boolean</dataType>
-            <fieldText>Esse chamado não está relacionado a um equipamento (opcional)</fieldText>
+            <fieldText>Prosseguir sem identificar o equipamento</fieldText>
             <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
@@ -957,30 +1060,38 @@ Equipamentos inseridos pelo usuário, se houver.</description>
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>122</locationX>
+        <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Contato</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <textTemplates>
-        <name>Descricao</name>
+        <name>Description</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Endereço: {!Endere_o_onde_o_equipamento_est_localizado}
-Descrição: {!Descri_o}</text>
+        <text>{!Descricao_Formula}
+Endereço: {!Endere_o_onde_o_equipamento_est_localizado}
+Detalhes:
+{!Descri_o}</text>
     </textTemplates>
     <textTemplates>
         <name>Email_Body</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Chamado criado pelo portal:
-{!Descricao_Formula}
+        <text>Chamado criado pelo portal.
+{!$User.FirstName}:
+{!Description}
+
+Iniciar formulário de criação de chamado:
+https://bpotec.my.salesforce.com/flow/Chamado_TEL_Formulario?caseId={!Caso.Id}
+
+Link para o registro de chamado:
 https://bpotec.my.salesforce.com/{!Caso.Id}</text>
     </textTemplates>
     <textTemplates>
         <name>Email_Subject</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Portal Aluga.com - Novo chamado - {!Contato.Account.nomeinterno__c}</text>
+        <text>Portal Aluga.com - Novo chamado - {!Contato.Account.Name}</text>
     </textTemplates>
     <variables>
         <name>Caso</name>
@@ -991,19 +1102,19 @@ https://bpotec.my.salesforce.com/{!Caso.Id}</text>
         <objectType>Case</objectType>
     </variables>
     <variables>
-        <name>contactid</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>ContactVar</name>
+        <name>Contact</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>contactid</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>Contagem</name>
@@ -1017,21 +1128,6 @@ https://bpotec.my.salesforce.com/{!Caso.Id}</text>
         </value>
     </variables>
     <variables>
-        <name>enderecoid</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>EnderecoVar</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Endere_o__c</objectType>
-    </variables>
-    <variables>
         <name>Equipamentos</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
@@ -1040,14 +1136,14 @@ https://bpotec.my.salesforce.com/{!Caso.Id}</text>
         <objectType>Equipamento__c</objectType>
     </variables>
     <variables>
-        <name>EquipamentosIds</name>
+        <name>Equipamentos_Texto</name>
         <dataType>String</dataType>
-        <isCollection>true</isCollection>
+        <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>Identifica_Equipamento</name>
+        <name>Equipamentos_Texto_Display</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
