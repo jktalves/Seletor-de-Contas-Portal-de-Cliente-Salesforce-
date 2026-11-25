@@ -1,20 +1,9 @@
-/**
- * Invocable Apex Action pra expor a lista de contas autorizadas do Seletor
- * de Contas dentro de um Flow — pedido do CTO pra reaproveitar a MESMA
- * lógica (AccountSwitcherController) em vez de duplicar um segundo seletor
- * de contas dentro de um fluxo (ex.: exportação de Equipamentos via Conga
- * precisa saber quais contas o usuário pode escolher).
- *
- * Não duplica query nem regra de negócio: só delega pro método já usado
- * pelo accountSwitcher (LWC).
- */
+// Expõe as contas autorizadas do seletor dentro de um Flow, delegando pro
+// AccountSwitcherController (sem duplicar query/regra de negócio).
 public with sharing class AccountSwitcherFlowGetAccounts {
 
     public class Request {
-        // Sem uso — existe só porque um Invocable Method exige que o tipo
-        // de entrada tenha pelo menos uma @InvocableVariable. A lista de
-        // contas autorizadas depende exclusivamente do usuário corrente do
-        // Flow, não de nenhuma entrada.
+        // Sem uso real — só existe pq Invocable Method exige pelo menos uma @InvocableVariable de entrada.
         @InvocableVariable(label='(sem uso)')
         public String naoUsado;
     }
@@ -35,10 +24,7 @@ public with sharing class AccountSwitcherFlowGetAccounts {
         public List<AccountOption> accounts;
     }
 
-    /**
-     * Retorna as contas que o usuário corrente do Flow tem acesso — a
-     * mesma lista que aparece no seletor de contas do portal.
-     */
+    // Mesma lista que aparece no seletor de contas do portal.
     @InvocableMethod(label='Seletor de Contas: Obter Contas Autorizadas' category='Seletor de Contas')
     public static List<Result> execute(List<Request> requests) {
         List<Result> results = new List<Result>();

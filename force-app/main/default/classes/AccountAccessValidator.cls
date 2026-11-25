@@ -1,20 +1,10 @@
-/**
- * Ponto único de autorização de "qual Account o usuário corrente pode acessar".
- *
- * Fonte de verdade: Account primária do Contact (User.ContactId -> Contact.AccountId)
- * combinada com as Accounts relacionadas ativas via AccountContactRelation
- * (Related Accounts). Nunca confia em valores vindos do cliente (LWC/URL/Storage) —
- * o AccountId recebido é sempre validado contra este conjunto antes de qualquer uso.
- */
+// Decide quais Accounts o usuário logado pode acessar: primária do Contact + AccountContactRelation ativas.
+// Nunca usar um AccountId vindo do frontend sem passar por aqui.
 public with sharing class AccountAccessValidator {
 
     public class AccountAccessException extends Exception {}
 
-    /**
-     * Retorna os Ids de Account que o usuário corrente está autorizado a acessar.
-     * Usado tanto para listar as contas do Account Switcher quanto para validar
-     * uma seleção específica.
-     */
+    // Mesmo conjunto usado pra listar as contas do seletor e pra validar uma seleção específica.
     public static Set<Id> getAuthorizedAccountIds() {
         Set<Id> accountIds = new Set<Id>();
 
@@ -54,26 +44,15 @@ public with sharing class AccountAccessValidator {
         return getAuthorizedAccountIds().contains(accountId);
     }
 
-    /**
-     * Lança AccountAccessException quando o usuário corrente não está autorizado
-     * a acessar a Account informada. Deve ser chamado por todo controller que
-     * recebe um AccountId do frontend antes de usá-lo em qualquer query.
-     */
+    // Chamado pelos controllers antes de usar um AccountId recebido do frontend.
     public static void assertHasAccess(Id accountId) {
         if (!hasAccess(accountId)) {
             throw new AccountAccessException('Acesso não autorizado a esta conta.');
         }
     }
 
-    /**
-     * Consulta o ContactId do próprio usuário autenticado. Não usa WITH USER_MODE
-     * aqui de propósito: é uma leitura do próprio registro de User (não expõe dado
-     * de terceiros) e depender de FLS neste ponto específico poderia quebrar o
-     * Account Switcher para usuários legítimos por uma configuração de campo
-     * desalinhada, sem nenhum ganho real de segurança. Público porque outras
-     * classes do Seletor de Contas (ex.: AccountSwitcherController) também
-     * precisam resolver o Contato do usuário corrente.
-     */
+    // Sem WITH USER_MODE de propósito: é o próprio User lendo o próprio ContactId,
+    // FLS aqui só quebraria o switcher à toa. Público pq outras classes também usam.
     public static Id getRunningUserContactId() {
         List<User> users = [
             SELECT ContactId

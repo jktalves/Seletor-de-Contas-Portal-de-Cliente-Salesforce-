@@ -1,14 +1,6 @@
-/**
- * Invocable Apex Action pra validar, dentro de um Flow, se o usuário
- * corrente tem acesso à conta informada — usar antes de qualquer
- * exportação/consulta que dependa de um Id de conta escolhido numa tela do
- * Flow. Nunca confiar no valor só porque veio de uma tela do próprio
- * fluxo, mesmo princípio de segurança usado no restante do projeto
- * (AccountAccessValidator).
- *
- * Retorna Boolean (não lança exceção) pra dar pra usar num Decision comum
- * no Flow Builder, sem precisar montar Fault Path.
- */
+// Valida dentro de um Flow se o usuário tem acesso a uma conta vinda de uma
+// tela/variável do próprio fluxo — nunca confiar nesse valor sem checar aqui.
+// Retorna Boolean (não lança exceção) pra usar num Decision comum, sem Fault Path.
 public with sharing class AccountSwitcherFlowValidateAccess {
 
     public class Request {

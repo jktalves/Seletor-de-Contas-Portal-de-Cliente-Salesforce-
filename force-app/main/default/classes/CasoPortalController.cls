@@ -1,26 +1,12 @@
-/**
- * Controller do componente casoLista (LWC) do portal — lista os Chamados
- * (Case) da Account atualmente selecionada no Account Switcher, com os
- * "Modos de exibição de lista": Todos (padrão na aba), Em Andamento, Novo,
- * Encerrados, Entregas/Devoluções/Trocas/Outros (por Type).
- *
- * Status_para_o_Cliente__c (fórmula, "Campo criado para o portal de
- * clientes") traduz o Status interno bruto pra um rótulo apresentável ao
- * cliente (ex.: "Escalado"/"Verificar" -> "Em andamento") — replicado da
- * produção em 06/11/2026 (não existia nesta sandbox até então). É sempre
- * esse campo que deve aparecer na coluna "Status", nunca o Status bruto.
- *
- * Em_andamento/Novo usam o campo padrão Status (bruto) só pra FILTRAR —
- * exibição sempre via Status_para_o_Cliente__c. Entregas/Devoluções/
- * Trocas/Outros usam o campo Type pra filtrar.
- *
- * Mesmo princípio do FaturaPortalController: o AccountId recebido do
- * frontend é sempre validado por AccountAccessValidator antes de ser usado
- * em qualquer query. Não usa WITH USER_MODE: o objeto Case já é exibido
- * hoje pelo componente padrão do Experience Builder para este mesmo perfil
- * de portal, então FLS/CRUD/sharing já estão resolvidos pela configuração
- * existente da org — este controller só adiciona o filtro por Account.
- */
+// Controller do componente casoLista (LWC) — lista os Chamados da conta ativa
+// no seletor, com os modos: Todos, Em Andamento, Novo, Encerrados, Entregas/
+// Devoluções/Trocas/Outros (esses últimos quatro filtram por Type).
+//
+// Status na coluna é sempre Status_para_o_Cliente__c (rótulo amigável), nunca
+// o Status bruto — Em_andamento/Novo usam o Status bruto só pra filtrar.
+//
+// Sem WITH USER_MODE: Case já é exibido pelo componente padrão do Experience
+// Builder nesse mesmo perfil, FLS/sharing já resolvidos — aqui só filtra por Account.
 public with sharing class CasoPortalController {
 
     public class CasoItem {
@@ -67,10 +53,7 @@ public with sharing class CasoPortalController {
         }
     }
 
-    /**
-     * viewName: "Todos" (padrão), "Em_andamento", "Novo", "Encerrados",
-     * "Entregas", "Devolucoes", "Trocas" ou "Outros".
-     */
+    // viewName: Todos (padrão), Em_andamento, Novo, Encerrados, Entregas, Devolucoes, Trocas ou Outros.
     @AuraEnabled
     public static List<CasoItem> getCasos(Id accountId, String viewName) {
         try {
@@ -87,9 +70,7 @@ public with sharing class CasoPortalController {
                 items.add(new CasoItem(c));
             }
         } catch (QueryException e) {
-            // Não esconder o erro real como lista vazia — isso já mascarou um
-            // problema real de FLS antes. Deixa o erro aparecer pro usuário
-            // (e pro log) em vez de simular "nenhum registro".
+            // Deixa o erro aparecer — já mascarou um bug real de FLS como "lista vazia" antes.
             AuraHandledException ahe = new AuraHandledException(e.getMessage());
             ahe.setMessage(e.getMessage());
             throw ahe;
@@ -101,7 +82,6 @@ public with sharing class CasoPortalController {
         String view = String.isBlank(viewName) ? 'Todos' : viewName;
 
         if (view == 'Em_andamento') {
-            // Tudo que não é Novo nem Encerrado.
             return [
                 SELECT Id, CaseNumber, Subject, Status, Status_para_o_Cliente__c, Data_Programada__c, Type,
                        AccountId, Account.Name, CreatedDate, ClosedDate, ContactId, Contact.Name, Usu_rio__c, Usu_rio__r.Name,
@@ -111,7 +91,6 @@ public with sharing class CasoPortalController {
                 WHERE AccountId = :accountId
                 AND Status NOT IN ('Novo', 'Fechado', 'Cancelado')
                 ORDER BY CreatedDate DESC
-                LIMIT 200
             ];
         }
         if (view == 'Novo') {
@@ -124,11 +103,9 @@ public with sharing class CasoPortalController {
                 WHERE AccountId = :accountId
                 AND Status = 'Novo'
                 ORDER BY CreatedDate DESC
-                LIMIT 200
             ];
         }
         if (view == 'Encerrados') {
-            // Mesmo filtro/colunas da list view nativa "Encerrados" (produção).
             return [
                 SELECT Id, CaseNumber, Subject, Status, Status_para_o_Cliente__c, Data_Programada__c, Type,
                        AccountId, Account.Name, CreatedDate, ClosedDate, ContactId, Contact.Name, Usu_rio__c, Usu_rio__r.Name,
@@ -138,11 +115,9 @@ public with sharing class CasoPortalController {
                 WHERE AccountId = :accountId
                 AND Status IN ('Fechado', 'Cancelado')
                 ORDER BY CreatedDate DESC
-                LIMIT 200
             ];
         }
         if (view == 'Entregas') {
-            // Mesmo filtro/colunas da list view nativa "Entregas" (produção).
             return [
                 SELECT Id, CaseNumber, Subject, Status, Status_para_o_Cliente__c, Data_Programada__c, Type,
                        AccountId, Account.Name, CreatedDate, ClosedDate, ContactId, Contact.Name, Usu_rio__c, Usu_rio__r.Name,
@@ -153,11 +128,9 @@ public with sharing class CasoPortalController {
                 AND Type IN ('Entregas', 'Logística - Entrega')
                 AND Status NOT IN ('Fechado', 'Cancelado')
                 ORDER BY CreatedDate DESC
-                LIMIT 200
             ];
         }
         if (view == 'Devolucoes') {
-            // Mesmo filtro/colunas da list view nativa "Devoluções" (produção).
             return [
                 SELECT Id, CaseNumber, Subject, Status, Status_para_o_Cliente__c, Data_Programada__c, Type,
                        AccountId, Account.Name, CreatedDate, ClosedDate, ContactId, Contact.Name, Usu_rio__c, Usu_rio__r.Name,
@@ -168,11 +141,9 @@ public with sharing class CasoPortalController {
                 AND Type IN ('Retiradas', 'Logística - Retiradas')
                 AND Status NOT IN ('Fechado', 'Cancelado')
                 ORDER BY CreatedDate DESC
-                LIMIT 200
             ];
         }
         if (view == 'Trocas') {
-            // Mesmo filtro/colunas da list view nativa "Trocas" (produção).
             return [
                 SELECT Id, CaseNumber, Subject, Status, Status_para_o_Cliente__c, Data_Programada__c, Type,
                        AccountId, Account.Name, CreatedDate, ClosedDate, ContactId, Contact.Name, Usu_rio__c, Usu_rio__r.Name,
@@ -183,13 +154,10 @@ public with sharing class CasoPortalController {
                 AND Type = 'Trocas'
                 AND Status NOT IN ('Fechado', 'Cancelado')
                 ORDER BY CreatedDate DESC
-                LIMIT 200
             ];
         }
         if (view == 'Outros') {
-            // Mesmo filtro/colunas da list view nativa "Suporte" (produção):
-            // tudo que não é Entregas/Devoluções/Trocas (por Type) e não está
-            // fechado/cancelado.
+            // Tudo que não é Entregas/Devoluções/Trocas e não está fechado/cancelado.
             return [
                 SELECT Id, CaseNumber, Subject, Status, Status_para_o_Cliente__c, Data_Programada__c, Type,
                        AccountId, Account.Name, CreatedDate, ClosedDate, ContactId, Contact.Name, Usu_rio__c, Usu_rio__r.Name,
@@ -200,10 +168,8 @@ public with sharing class CasoPortalController {
                 AND Type NOT IN ('Entregas', 'Logística - Entrega', 'Retiradas', 'Logística - Retiradas', 'Trocas')
                 AND Status NOT IN ('Fechado', 'Cancelado')
                 ORDER BY CreatedDate DESC
-                LIMIT 200
             ];
         }
-        // "Todos" (padrão) — mesmas colunas da list view nativa "Todos" (produção).
         return [
             SELECT Id, CaseNumber, Subject, Status, Status_para_o_Cliente__c, Data_Programada__c, Type,
                    AccountId, Account.Name, CreatedDate, ClosedDate, ContactId, Contact.Name, Usu_rio__c, Usu_rio__r.Name,
@@ -212,7 +178,6 @@ public with sharing class CasoPortalController {
             FROM Case
             WHERE AccountId = :accountId
             ORDER BY CreatedDate DESC
-            LIMIT 200
         ];
     }
 }

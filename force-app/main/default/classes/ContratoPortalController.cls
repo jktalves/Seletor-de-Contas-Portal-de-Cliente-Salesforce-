@@ -1,20 +1,10 @@
-/**
- * Controller do componente contratoLista (LWC) do portal — lista os
- * Contratos de Locação (Oportunidade_Aprovada__c) da Account atualmente
- * selecionada no Account Switcher, com "Modos de exibição de lista": Todos
- * (padrão), Ativos, Encerrados, Novos — mesmos filtros/colunas das list
- * views nativas equivalentes da produção, conferidas em 06/11/2026.
- *
- * Status__c é uma fórmula (não picklist) com valores possíveis "Ativo",
- * "Novo", "Encerrado", "Cancelado" ou "" (branco) — o rótulo de negócio
- * "Finalizado" (estágio da Oportunidade de origem) vira o valor "Encerrado"
- * aqui. IMPORTANTE: "Ativos" tem que ser Status__c = 'Ativo' exatamente
- * (igual a list view nativa) — usar "NOT IN ('Encerrado','Novo')" é
- * ERRADO, pois deixaria "Cancelado"/branco aparecerem como se fossem
- * ativos (bug corrigido em 06/11/2026).
- *
- * Mesmo princípio de segurança do FaturaPortalController.
- */
+// Controller do componente contratoLista (LWC) — lista os Contratos de
+// Locação (Oportunidade_Aprovada__c) da conta ativa, modos: Todos, Ativos,
+// Encerrados, Novos.
+//
+// Status__c é fórmula, não picklist: "Ativo"/"Novo"/"Encerrado"/"Cancelado"/"".
+// "Ativos" tem que ser Status__c = 'Ativo' exato — NOT IN ('Encerrado','Novo')
+// deixaria Cancelado/branco passarem como se fossem ativos.
 public with sharing class ContratoPortalController {
 
     public class ContratoItem {
@@ -45,9 +35,7 @@ public with sharing class ContratoPortalController {
         }
     }
 
-    /**
-     * viewName: "Todos" (padrão), "Ativos", "Encerrados" ou "Novos".
-     */
+    // viewName: Todos (padrão), Ativos, Encerrados ou Novos.
     @AuraEnabled
     public static List<ContratoItem> getContratos(Id accountId, String viewName) {
         try {
@@ -82,7 +70,6 @@ public with sharing class ContratoPortalController {
                 WHERE Conta__c = :accountId
                 AND Status__c = 'Ativo'
                 ORDER BY data_entrega__c DESC NULLS LAST
-                LIMIT 200
             ];
         }
         if (view == 'Encerrados') {
@@ -93,7 +80,6 @@ public with sharing class ContratoPortalController {
                 WHERE Conta__c = :accountId
                 AND Status__c = 'Encerrado'
                 ORDER BY data_entrega__c DESC NULLS LAST
-                LIMIT 200
             ];
         }
         if (view == 'Novos') {
@@ -104,18 +90,15 @@ public with sharing class ContratoPortalController {
                 WHERE Conta__c = :accountId
                 AND Status__c = 'Novo'
                 ORDER BY data_entrega__c DESC NULLS LAST
-                LIMIT 200
             ];
         }
 
-        // "Todos" (padrão) — sem filtro adicional.
         return [
             SELECT Id, Name, Status__c, data_entrega__c, Data_de_Inicio_do_Contrato__c, data_retirada__c,
                    Contato__c, Contato__r.Name, Endere_o__c, Endere_o__r.Name, Valor__c
             FROM Oportunidade_Aprovada__c
             WHERE Conta__c = :accountId
             ORDER BY data_entrega__c DESC NULLS LAST
-            LIMIT 200
         ];
     }
 }

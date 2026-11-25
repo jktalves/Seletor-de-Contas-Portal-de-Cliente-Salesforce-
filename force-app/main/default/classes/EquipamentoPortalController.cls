@@ -1,12 +1,6 @@
-/**
- * Controller do componente equipamentoLista (LWC) do portal — lista os
- * Equipamentos da Account atualmente selecionada no Account Switcher, com
- * "Modos de exibição de lista": Todos (padrão), Locado e Em Espera — os
- * últimos dois baseados em Status__c (valueSet global
- * Status_do_Equipamento, que não tem valores literais "Locado"/"Em Espera"
- * — mapeamento definido com o usuário em 17/09/2026). Mesmo princípio de
- * segurança do FaturaPortalController.
- */
+// Controller do componente equipamentoLista (LWC) — lista os Equipamentos da
+// conta ativa, modos: Todos, Locado e Em Espera. "Locado"/"Em Espera" não são
+// valores literais de Status__c — são grupos de status mapeados abaixo.
 public with sharing class EquipamentoPortalController {
 
     public class EquipamentoItem {
@@ -35,9 +29,7 @@ public with sharing class EquipamentoPortalController {
         }
     }
 
-    /**
-     * viewName: "Todos" (padrão), "Locado" ou "Em_Espera".
-     */
+    // viewName: Todos (padrão), Locado ou Em_Espera.
     @AuraEnabled
     public static List<EquipamentoItem> getEquipamentos(Id accountId, String viewName) {
         try {
@@ -65,7 +57,6 @@ public with sharing class EquipamentoPortalController {
         String view = String.isBlank(viewName) ? 'Todos' : viewName;
 
         if (view == 'Recentes') {
-            // Mesmo princípio das views "Recente(s)" de Faturas/Licenças.
             return [
                 SELECT Id, Name, Descri_o_modelo_e_processador__c, Contrato_Portal__c, Contrato_Portal__r.Name,
                        DataEntrega__c, Contato_Usu_rio__c, Contato_Usu_rio__r.Name,
@@ -74,7 +65,6 @@ public with sharing class EquipamentoPortalController {
                 WHERE Conta_Registro__c = :accountId
                 AND LastViewedDate != null
                 ORDER BY LastViewedDate DESC
-                LIMIT 200
             ];
         }
         if (view == 'Locado') {
@@ -86,7 +76,6 @@ public with sharing class EquipamentoPortalController {
                 WHERE Conta_Registro__c = :accountId
                 AND Status__c IN ('OK', 'Funcional', 'Estoque RJ / Em Locação', 'Estoque SP / Em Locação')
                 ORDER BY Name ASC
-                LIMIT 200
             ];
         }
         if (view == 'Em_Espera') {
@@ -98,15 +87,10 @@ public with sharing class EquipamentoPortalController {
                 WHERE Conta_Registro__c = :accountId
                 AND Status__c IN ('A Preparar', 'Reservado', 'Pre-cadastro', 'Revisão', 'Manutenção', 'Manutenção - Aguardando peças')
                 ORDER BY Name ASC
-                LIMIT 200
             ];
         }
 
-        // "Todos" — mesmo princípio da list view nativa "Equipamentos_Alugados"
-        // (ligada a esta mesma aba em produção): não mostra equipamento
-        // Vendido/Extraviado/etc. União dos status de "Locado" + "Em_Espera"
-        // pra nunca ficar menor que a soma dos outros dois modos (bug
-        // corrigido em 06/11/2026 — antes não tinha filtro nenhum).
+        // "Todos" é a união de "Locado" + "Em_Espera" (exclui Vendido/Extraviado/etc).
         return [
             SELECT Id, Name, Descri_o_modelo_e_processador__c, Contrato_Portal__c, Contrato_Portal__r.Name,
                    DataEntrega__c, Contato_Usu_rio__c, Contato_Usu_rio__r.Name,
@@ -117,7 +101,6 @@ public with sharing class EquipamentoPortalController {
                                'A Preparar', 'Reservado', 'Pre-cadastro', 'Revisão', 'Manutenção',
                                'Manutenção - Aguardando peças')
             ORDER BY Name ASC
-            LIMIT 200
         ];
     }
 }

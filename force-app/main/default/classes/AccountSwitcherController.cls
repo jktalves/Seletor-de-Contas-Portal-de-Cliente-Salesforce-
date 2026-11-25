@@ -1,10 +1,5 @@
-/**
- * Controller do componente accountSwitcher (LWC) do portal Experience Cloud.
- *
- * Regra de ouro: o AccountId recebido do frontend NUNCA é usado diretamente em
- * uma query. Ele é sempre validado primeiro por AccountAccessValidator, que é a
- * única fonte de verdade sobre quais Accounts o usuário corrente pode acessar.
- */
+// Controller do componente accountSwitcher (LWC). AccountId do frontend nunca
+// é usado direto numa query — sempre valida primeiro com AccountAccessValidator.
 public with sharing class AccountSwitcherController {
 
     public class AccountOption {
@@ -19,12 +14,7 @@ public with sharing class AccountSwitcherController {
         }
     }
 
-    /**
-     * Retorna somente as Accounts que o usuário corrente está autorizado a
-     * acessar (Account primária do Contact + relações ativas via
-     * AccountContactRelation). Nunca retorna todas as Accounts para depois
-     * filtrar no frontend.
-     */
+    // Retorna só as contas autorizadas — nunca todas as Accounts pra filtrar no frontend.
     @AuraEnabled(cacheable=true)
     public static List<AccountOption> getAvailableAccounts() {
         Set<Id> authorizedIds = AccountAccessValidator.getAuthorizedAccountIds();
@@ -47,12 +37,8 @@ public with sharing class AccountSwitcherController {
         return options;
     }
 
-    /**
-     * Confirma a troca de conta ativa. Revalida no servidor se o accountId
-     * recebido pertence ao conjunto de contas autorizadas do usuário corrente
-     * antes de retornar qualquer dado — o frontend só deve publicar o novo
-     * contexto (LMS) depois que este método responder com sucesso.
-     */
+    // Revalida no servidor antes de confirmar a troca — frontend só publica o
+    // novo contexto (LMS) depois que este método responder com sucesso.
     @AuraEnabled
     public static AccountOption selectAccount(Id accountId) {
         try {
@@ -82,20 +68,10 @@ public with sharing class AccountSwitcherController {
         }
     }
 
-    /**
-     * Grava a conta ativa em Contact.Conta_Ativa__c — pedido do Gustavo (CTO)
-     * em 30/09/2026 pra Flows que já existem (ex.: formulário de abertura de
-     * chamado no portal, exportação via Conga) poderem ler a conta ativa
-     * direto do Contato, sem precisar chamar nenhuma Action.
-     *
-     * Limitação conhecida e aceita: o campo é por Contato, não por
-     * aba/sessão — se a mesma pessoa tiver duas abas abertas com contas
-     * diferentes, a última troca sobrescreve a outra.
-     *
-     * Se a gravação falhar por qualquer motivo (sharing, FLS, etc.), não deve
-     * quebrar a troca de conta em si — a funcionalidade principal do
-     * Account Switcher (LMS/sessionStorage) não depende deste campo.
-     */
+    // Grava a conta ativa em Contact.Conta_Ativa__c pra flows (Conga, abertura de
+    // chamado) lerem sem precisar chamar uma Action. É por Contato, não por aba —
+    // duas abas abertas com contas diferentes, a última troca vence a outra.
+    // Falha aqui não pode quebrar a troca de conta em si (LMS não depende disso).
     private static void persistActiveAccountOnContact(Id accountId) {
         try {
             Id contactId = AccountAccessValidator.getRunningUserContactId();
